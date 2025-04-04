@@ -8,10 +8,10 @@ ____
 - - [События сайта](#cобытия-сайта)
 
 ## Структура проекта
-Код в [de_demo](de_demo), контейнеризация в [docker](docker/README.md), тесты в [tests](tests).
+Код в [de_demo](de_demo), контейнеризация в [docker](docker), тесты в [tests](tests).
 
 ## Инициализация проекта
-Можно стартануть в [docker](docker/README.md) или локально.
+Можно стартануть в [docker](docker) или локально.
 
 Для запуска проекта локально, необходимо:
 - Установить python 3.12([загрузки](https://www.python.org/downloads/)) 
@@ -28,5 +28,5 @@ ____
 Миграции можно запускать при помощи [соответствующей утилиты командной строки](#миграции).
 
 ### События сайта
-Представлены двумя [таблицами](de_demo/apps/events/warehouse/README.md), которые развертываются 
+Представлены двумя [таблицами](de_demo/apps/events/warehouse), которые развертываются 
 миграцией [0001_create_events.py](de_demo/migrations/clickhouse/0001_create_events.py).
