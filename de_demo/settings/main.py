@@ -7,14 +7,26 @@ from pydantic_settings import (
 )
 
 from de_demo.api.settings import ApiSettings
+from de_demo.apps.events.settings import EventsSettings
 from de_demo.migrations.settings import ClickhouseMigrationsSettings, MigrationSettings
 from de_demo.warehouse.settings import WarehouseSettings
+
+
+class AppsSettings(BaseSettings):
+    events: EventsSettings = EventsSettings()
+
+    model_config = SettingsConfigDict(
+        env_prefix='DD__APPS__',
+        env_nested_delimiter='__',
+        nested_model_default_partial_update=True,
+    )
 
 
 class Settings(BaseSettings):
     api: ApiSettings = ApiSettings()
     warehouse: WarehouseSettings = WarehouseSettings()
     migrations: MigrationSettings = MigrationSettings(clickhouse=ClickhouseMigrationsSettings(db=warehouse.clickhouse))
+    apps: AppsSettings = AppsSettings(events=EventsSettings(db=warehouse.clickhouse))
 
     _yaml_file: ClassVar[Path] = None
     _toml_file: ClassVar[Path] = None
