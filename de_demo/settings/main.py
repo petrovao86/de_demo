@@ -6,11 +6,13 @@ from pydantic_settings import (
     YamlConfigSettingsSource
 )
 
+from de_demo.api.settings import ApiSettings
 from de_demo.migrations.settings import ClickhouseMigrationsSettings, MigrationSettings
 from de_demo.warehouse.settings import WarehouseSettings
 
 
 class Settings(BaseSettings):
+    api: ApiSettings = ApiSettings()
     warehouse: WarehouseSettings = WarehouseSettings()
     migrations: MigrationSettings = MigrationSettings(clickhouse=ClickhouseMigrationsSettings(db=warehouse.clickhouse))
 

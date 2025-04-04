@@ -3,8 +3,17 @@ from pathlib import Path
 
 import fire
 
+from de_demo.api.cli import ApiCli
 from de_demo.migrations.cli import MigrateCli
 from de_demo.settings.main import Settings
+
+
+class RunCli:
+    """Запуск сервисов и утилит."""
+
+    @property
+    def api(self):
+        return ApiCli()
 
 
 class Cli:
@@ -37,6 +46,10 @@ class Cli:
     @property
     def settings(self):
         return self._settings.model_dump_json(indent=4)
+
+    @property
+    def run(self):
+        return RunCli()
 
     @property
     def migrate(self):

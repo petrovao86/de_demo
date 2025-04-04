@@ -1,14 +1,17 @@
 [project]
 name = "de-demo"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 authors = [
     {name = "Александр Петров",email = "petrov.a.o-86@yandex.ru"}
 ]
 requires-python = ">=3.12,<4.0"
 dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "prometheus-fastapi-instrumentator (>=7.1.0,<8.0.0)",
     "pydantic (>=2.10.6,<3.0.0)",
     "infi-clickhouse-orm (>=2.1.3,<3.0.0)",
+    "uvicorn[standard] (>=0.34.0,<0.35.0)",
     "fire (>=0.7.0,<0.8.0)",
     "pydantic-settings (>=2.8.1,<3.0.0)",
 ]
@@ -21,6 +24,7 @@ build-backend = "poetry.core.masonry.api"
 pytest = "^8.3.5"
 setuptools = "^78.1.0"
 coverage = "^7.7.1"
+pytest-asyncio = "^0.26.0"
 
 [tool.poetry.scripts]
 de-demo = "de_demo.cli.main:run"
