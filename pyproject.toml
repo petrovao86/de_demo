@@ -1,0 +1,34 @@
+[project]
+name = "de-demo"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Александр Петров",email = "petrov.a.o-86@yandex.ru"}
+]
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "pydantic (>=2.10.6,<3.0.0)",
+    "infi-clickhouse-orm (>=2.1.3,<3.0.0)",
+    "fire (>=0.7.0,<0.8.0)",
+    "pydantic-settings (>=2.8.1,<3.0.0)",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+setuptools = "^78.1.0"
+coverage = "^7.7.1"
+
+[tool.poetry.scripts]
+de-demo = "de_demo.cli.main:run"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"
+addopts = "-p no:warnings"
+markers = ["unit", "integration", "other"]

@@ -1,0 +1,6 @@
+.poetry
+.pytest_cache
+tests
+README.md
+docker/*
+!docker/de-demo.dockerfile

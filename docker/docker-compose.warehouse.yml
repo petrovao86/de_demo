@@ -1,0 +1,23 @@
+services:
+  ch:
+    image: clickhouse/clickhouse-server:24.12-alpine
+    volumes:
+      - ch:/var/lib/clickhouse
+      - ../data/events.xz:/var/lib/clickhouse/user_files/events.xz
+    ports:
+      - '127.0.0.1:${CH_TCP_PORT:-19000}:9000'
+      - '127.0.0.1:${CH_HTTP_PORT:-18123}:8123'
+    environment:
+      - TZ=UTC
+      - CLICKHOUSE_USER=user
+      - CLICKHOUSE_PASSWORD=pass
+    restart: always
+    healthcheck:
+      test: clickhouse-client --user "$$CLICKHOUSE_USER" --password "$$CLICKHOUSE_PASSWORD" --query "SELECT 1"
+      start_period: 3s
+      interval: 1s
+      timeout: 2s
+      retries: 3
+
+volumes:
+  ch:
