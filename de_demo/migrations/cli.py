@@ -1,6 +1,7 @@
 from infi.clickhouse_orm.database import Database
-from pydantic import SecretStr
+from pydantic import AnyHttpUrl, EmailStr, SecretStr
 
+from .metabase.main import migrate
 from .settings import settings
 
 
@@ -24,3 +25,31 @@ class MigrateCli:
             password=passwd
         )
         ch_db.migrate(package)
+
+    @staticmethod
+    def metabase(
+            addr: str = str(settings.metabase.addr),
+            user: str = settings.metabase.user,
+            email: str = settings.metabase.email,
+            passwd: str | SecretStr = settings.metabase.passwd,
+            locale: str = settings.metabase.locale,
+            site_name: str = settings.metabase.site_name,
+            engine: str = settings.metabase.db_engine,
+            name: str = settings.metabase.db_name,
+            db_host: str = settings.metabase.db.addr.host,
+            db_port: int = settings.metabase.db.addr.port,
+            db_user: str = settings.metabase.db.user,
+            db_passwd: str | SecretStr = settings.metabase.db.passwd,
+            db_name: str = settings.metabase.db.name
+
+
+    ):
+        passwd = passwd.get_secret_value() if isinstance(passwd, SecretStr) else passwd
+        db_passwd = db_passwd.get_secret_value() if isinstance(db_passwd, SecretStr) else db_passwd
+        migrate(
+            addr=addr, email=email, user_name=user, passwd=passwd, locale=locale, site_name=site_name,
+            name=name, engine=engine,
+            db_host=db_host, db_port=db_port, db_user=db_user, db_passwd=db_passwd, db_name=db_name
+        )
+
+

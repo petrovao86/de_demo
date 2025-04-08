@@ -8,7 +8,9 @@ from pydantic_settings import (
 
 from de_demo.api.settings import ApiSettings
 from de_demo.apps.events.settings import EventsSettings
-from de_demo.migrations.settings import ClickhouseMigrationsSettings, MigrationSettings
+from de_demo.migrations.settings import (
+    ClickhouseMigrationsSettings, MetabaseMigrationsSettings, MigrationSettings
+)
 from de_demo.warehouse.settings import WarehouseSettings
 
 
@@ -25,7 +27,10 @@ class AppsSettings(BaseSettings):
 class Settings(BaseSettings):
     api: ApiSettings = ApiSettings()
     warehouse: WarehouseSettings = WarehouseSettings()
-    migrations: MigrationSettings = MigrationSettings(clickhouse=ClickhouseMigrationsSettings(db=warehouse.clickhouse))
+    migrations: MigrationSettings = MigrationSettings(
+        clickhouse=ClickhouseMigrationsSettings(db=warehouse.clickhouse),
+        metabase=MetabaseMigrationsSettings(db=warehouse.clickhouse),
+    )
     apps: AppsSettings = AppsSettings(events=EventsSettings(db=warehouse.clickhouse))
 
     _yaml_file: ClassVar[Path] = None
