@@ -2,8 +2,9 @@
 .pytest_cache
 tests
 README.md
+data
 dbt
 de_demo
-data
+docs
 docker/*
 !docker/metabase.dockerfile

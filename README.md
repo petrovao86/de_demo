@@ -2,29 +2,27 @@
 Пример сервиса аналитики, отвечающего за приём и обработку событий.
 ____
 ## Описание
+- [Демонстрационные данные](#демонстрационные-данные)
+- [Архитектура решения](#архитектура-решения)
+- [Схема данных](#схема-данных)
+  - [События сайта](#cобытия-сайта)
+  - [Пользовательская активность](#пользовательская-активность)
 - [Структура проекта](#структура-проекта)
 - [Инициализация проекта](#инициализация-проекта)
-- [Схема данных](#схема-данных)
-- - [События сайта](#cобытия-сайта)
-- - [Пользовательская активность](#пользовательская-активность)
 - [BI](#bi)
 - [dbt](#dbt)
 - [API](#api)
 - [Мониторинг](#мониторинг)
 
-## Структура проекта
-Код в [de_demo](de_demo), контейнеризация в [docker](docker), тесты в [tests](tests).
+## Демонстрационные данные
+Исторником данных является воображаемый интернет-магазин с 4мя товарами по которому перемещаются 
+пользователи:
+![Сайт](docs/images/de_demo_site.svg)
 
-## Инициализация проекта
-Можно стартануть в [docker](docker) или локально.
-
-Для запуска проекта локально, необходимо:
-- Установить python 3.12([загрузки](https://www.python.org/downloads/)) 
-- Установить poetry([инструкция](https://python-poetry.org/docs/#installing-with-the-official-installer))
-  - TLDR: `curl -sSL https://install.python-poetry.org | python3 -`
-- В корне проекта `poetry env use python3.12` и `poetry install --no-root`
-- Далее см. [утилиту командной строки](#утилита-командной-строки), [тесты](#тесты)
-
+## Архитектура решения
+Действия пользователей принимаются в [api](#api), и батчами пишутся в [clickhouse](#cобытия-сайта).
+Дальнейшая обработка данных происходит при помощи [dbt](#dbt), результаты отображаются в [BI](#bi).
+![Pipeline](docs/images/de_demo_arch_gen_2_scheduler_dbt.svg)
 
 ## Схема данных
 Для работы с хранилищем используется библиотека [infi-clickhouse-orm](https://github.com/Infinidat/infi.clickhouse_orm).
@@ -37,15 +35,33 @@ ____
 миграцией [0001_create_events.py](de_demo/migrations/clickhouse/0001_create_events.py).
 
 ### Пользовательская активность
-Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи dbt.
+Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи [dbt](#dbt).
 В [intermediate слой](de_demo/apps/users/dbt/models/users_activity_aggr.sql) 
 при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
 комбинатора инкрементально пишутся intermedi-агрегаты по дням, 
-витрина представлена [вьюхой](de_demo/apps/users/dbt/models/users_activity.sql) агрегирующей эти intermedi-агрегаты
-за требуемое кол-во дней.
+витрина представлена [вьюхой](de_demo/apps/users/dbt/models/users_activity.sql) 
+агрегирующей промежуточные данные за требуемое кол-во дней.
+
+
+## Структура проекта
+* Код в [de_demo](de_demo) 
+* Контейнеризация в [docker](docker)
+* Тесты в [tests](tests)
+
+## Инициализация проекта
+Можно стартануть в [docker](docker) или локально.
+
+Для запуска проекта локально, необходимо:
+- Установить python 3.12([загрузки](https://www.python.org/downloads/)) 
+- Установить poetry([инструкция](https://python-poetry.org/docs/#installing-with-the-official-installer))
+  - TLDR: `curl -sSL https://install.python-poetry.org | python3 -`
+- В корне проекта `poetry env use python3.12` и `poetry install --no-root`
+- Далее см. [утилиту командной строки](#утилита-командной-строки), [тесты](#тесты)
+
+
 
 ## BI
-В рамках проекта развёрнут BI на базе metabase.
+В рамках проекта развёрнут BI на базе [metabase](https://www.metabase.com/).
 Логин `test@test.test`, пароль `1!!test!!1`.
 
 Адрес http://127.0.0.1:13001/

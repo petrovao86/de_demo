@@ -2,6 +2,8 @@
 .pytest_cache
 tests
 README.md
+data
 dbt
+docs
 docker/*
 !docker/de-demo.dockerfile

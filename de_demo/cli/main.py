@@ -21,7 +21,6 @@ class RunCli:
         return DbtCli()
 
 
-
 class Cli:
     """Клиент командной строки для de-demo.
 
