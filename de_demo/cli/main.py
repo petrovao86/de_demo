@@ -4,6 +4,7 @@ from pathlib import Path
 import fire
 
 from de_demo.api.cli import ApiCli
+from de_demo.dbt.cli import DbtCli
 from de_demo.migrations.cli import MigrateCli
 from de_demo.settings.main import Settings
 
@@ -14,6 +15,11 @@ class RunCli:
     @property
     def api(self):
         return ApiCli()
+
+    @property
+    def dbt(self):
+        return DbtCli()
+
 
 
 class Cli:
