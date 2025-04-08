@@ -6,6 +6,7 @@ ____
 - [Инициализация проекта](#инициализация-проекта)
 - [Схема данных](#схема-данных)
 - - [События сайта](#cобытия-сайта)
+- - [Пользовательская активность](#пользовательская-активность)
 - [API](#api)
 - [Мониторинг](#мониторинг)
 
@@ -32,6 +33,14 @@ ____
 ### События сайта
 Представлены двумя [таблицами](de_demo/apps/events/warehouse), которые развертываются 
 миграцией [0001_create_events.py](de_demo/migrations/clickhouse/0001_create_events.py).
+
+### Пользовательская активность
+Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи dbt.
+В [intermediate слой](de_demo/apps/users/dbt/models/users_activity_aggr.sql) 
+при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
+комбинатора инкрементально пишутся intermedi-агрегаты по дням, 
+витрина представлена [вьюхой](de_demo/apps/users/dbt/models/users_activity.sql) агрегирующей эти intermedi-агрегаты
+за требуемое кол-во дней.
 
 ## API
 Сервис приёма событий написан на python с использованием фреймворка FastAPI.

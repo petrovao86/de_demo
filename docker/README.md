@@ -1,14 +1,13 @@
 # Docker
 [Инструкция по установке docker](https://docs.docker.com/get-started/get-docker/)
-___
+
 Запуск проекта:
 ```shell
 docker compose -f ./docker/docker-compose.yml -p de_demo up --build -d
 ```
 > На первый запуск может понадобиться некоторое время, последующие запуски будут существенно 
-> быстрее благодаря использованию кэша.
+> быстрее благодаря использованию кэширующих слоёв.
 
-___
 Остановка и очистка
 ```shell
 docker compose -f ./docker/docker-compose.yml -p de_demo down --volumes
