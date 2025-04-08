@@ -3,5 +3,7 @@
 tests
 README.md
 dbt
+de_demo
+data
 docker/*
-!docker/de-demo.dockerfile
+!docker/metabase.dockerfile
