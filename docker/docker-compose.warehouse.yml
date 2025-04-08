@@ -19,5 +19,23 @@ services:
       timeout: 2s
       retries: 3
 
+  migrator:
+    image: de-demo:latest
+    build:
+      context: ..
+      dockerfile: ./docker/de-demo.dockerfile
+    depends_on:
+      ch:
+        condition: service_healthy
+    command:
+      - migrate
+      - clickhouse
+      - --addr=http://ch:8123
+    logging:
+      options:
+        max-size: 50m
+        max-file: 10
+
+
 volumes:
   ch:

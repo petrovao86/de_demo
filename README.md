@@ -70,7 +70,12 @@ ____
 Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt_project.yml).
 
 ## API
-Запуск API `de-demo run api`.
+При запуске в docker, стартует автоматом. 
+
+Запуск API руками `de-demo run api`.
+> ! Для запуска api нужен запущенный clickhouse: 
+> 
+> `docker compose -f ./docker/docker-compose.warehouse.yml -p de_demo up --build -d`
 
 Сервис приёма событий написан на python с использованием фреймворка FastAPI.
 
