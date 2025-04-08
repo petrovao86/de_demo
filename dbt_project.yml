@@ -13,6 +13,7 @@ profile: 'de_demo'
 # found in the "models/" directory. You probably won't need to change these!
 model-paths:
     - de_demo/apps/events/dbt/models
+    - de_demo/apps/users/dbt/models
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "dbt/target"
