@@ -27,8 +27,7 @@ ____
 ## Схема данных
 Для работы с хранилищем используется библиотека [infi-clickhouse-orm](https://github.com/Infinidat/infi.clickhouse_orm).
 
-Схема staging слоя определяется [миграциями](de_demo/migrations/clickhouse). 
-Миграции можно запускать при помощи [соответствующей утилиты командной строки](#миграции).
+Схема staging слоя определяется [миграциями](de_demo/migrations/clickhouse).
 
 ### События сайта
 Представлены двумя [таблицами](de_demo/apps/events/warehouse), которые развертываются 
@@ -38,9 +37,9 @@ ____
 Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи [dbt](#dbt).
 В [intermediate слой](de_demo/apps/users/dbt/models/users_activity_aggr.sql) 
 при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
-комбинатора инкрементально пишутся intermedi-агрегаты по дням, 
+комбинатора инкрементально пишутся агрегаты по дням, 
 витрина представлена [вьюхой](de_demo/apps/users/dbt/models/users_activity.sql) 
-агрегирующей промежуточные данные за требуемое кол-во дней.
+агрегирующей промежуточные данные за требуемое кол-во дней оконными функциями.
 
 
 ## Структура проекта
