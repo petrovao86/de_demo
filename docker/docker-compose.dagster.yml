@@ -19,8 +19,6 @@ services:
     build:
       context: ..
       dockerfile: ./docker/de-demo.dockerfile
-    volumes:
-      - ../dagster.yaml:/app/dagster.yaml
     entrypoint:
       - dagster-webserver
       - -h
@@ -52,8 +50,6 @@ services:
     build:
       context: ..
       dockerfile: ./docker/de-demo.dockerfile
-    volumes:
-      - ../dagster.yaml:/app/dagster.yaml
     entrypoint:
       - dagster-daemon
       - run
@@ -67,6 +63,10 @@ services:
       DAGSTER_POSTGRES_USER: "dagster"
       DAGSTER_POSTGRES_PASSWORD: "dagster"
       DAGSTER_POSTGRES_DB: "dagster"
+      CLICKHOUSE_HOST: "ch"
+      CLICKHOUSE_PORT: 8123
+      CLICKHOUSE_USER: "user"
+      CLICKHOUSE_PASSWORD: "pass"
     depends_on:
       postgresql:
         condition: service_healthy

@@ -11,7 +11,7 @@ WITH users_activity AS (
     SELECT
         toDate(dt) as date,
         uniqState(user_id) as dauState
-    FROM {{ source('default', 'events') }}
+    FROM {{ ref('stg_site_events') }}
     {% if is_incremental() %}
     WHERE dt >= toStartOfMonth((select max(date) from {{ this }})) - toIntervalMonth(1)
     {% endif %}

@@ -35,10 +35,10 @@ ____
 
 ### Пользовательская активность
 Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи [dbt](#dbt).
-В [intermediate слой](de_demo/apps/users/dbt/models/users_activity_aggr.sql) 
+В [intermediate слой](dbt/models/intermediate/int_site_events_to_users_activity_by_day.sql) 
 при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
 комбинатора инкрементально пишутся агрегаты по дням, 
-витрина представлена [вьюхой](de_demo/apps/users/dbt/models/users_activity.sql) 
+витрина представлена [вьюхой](dbt/models/marts/users_activity.sql) 
 агрегирующей промежуточные данные за требуемое кол-во дней оконными функциями.
 
 
@@ -66,7 +66,7 @@ ____
 Адрес http://127.0.0.1:13001/
 
 ## dbt
-Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt_project.yml).
+Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt/dbt_project.yml).
 
 ## API
 При запуске в docker, стартует автоматом. 

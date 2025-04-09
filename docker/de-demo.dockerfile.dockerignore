@@ -3,7 +3,9 @@
 tests
 README.md
 data
-dbt
+dbt/logs
+dbt/target
+/dbt/.user.yml
 docs
 docker/*
 !docker/de-demo.dockerfile
