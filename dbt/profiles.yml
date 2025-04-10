@@ -10,11 +10,11 @@ de_demo:
       password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"
       secure: False
 
-    parse:
+    dev:
       type: clickhouse
       schema: default
       host: "127.0.0.1"
-      port: 8123
+      port: 18123
       user: "user"
       password: "pass"
       secure: False

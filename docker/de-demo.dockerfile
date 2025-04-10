@@ -37,7 +37,7 @@ COPY --from=cache /app /app
 COPY dbt /app/dbt
 RUN pip install --user --no-cache-dir --no-index --find-links /app/dist -r /app/dbt_requirements.txt && \
     cd /app/dbt && \
-    dbt parse --target parse --profiles-dir /app/dbt
+    dbt parse --target dev --profiles-dir /app/dbt
 # Установка пакета
 FROM python:3.12.9-slim-bookworm AS app
 
