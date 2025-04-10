@@ -39,7 +39,7 @@ RUN pip install --user --no-cache-dir --no-index --find-links /app/dist -r /app/
     cd /app/dbt && \
     dbt parse --target dev --profiles-dir /app/dbt
 # Установка пакета
-FROM python:3.12.9-slim-bookworm AS app
+FROM python:3.12.9-slim-bookworm AS base
 
 RUN adduser --system --home /app --uid 1000 --group app
 USER app
@@ -47,10 +47,20 @@ USER app
 WORKDIR /app/
 ENV PATH="/app/.local/bin:${PATH}"
 
+COPY --from=build --chown=app:app /app/dist /app/dist
+
+FROM base AS app
+RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo
+ENTRYPOINT  ["de-demo"]
+
+FROM base AS api
+RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[api]
+ENTRYPOINT  ["de-demo", "run", "api"]
+
+FROM base AS dagster
+
 COPY dagster.yaml /app/
 COPY dbt /app/dbt
-COPY --from=build --chown=app:app /app/dist /app/dist
 COPY --from=dbt_build --chown=app:app /app/dbt/target/manifest.json /app/dbt/target/manifest.json
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[dbt]
 
-ENTRYPOINT  ["de-demo"]
+RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[dagster,dbt]

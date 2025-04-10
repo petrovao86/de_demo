@@ -1,5 +1,5 @@
 de_demo:
-  target: prod
+  target: dev
   outputs:
     prod:
       type: clickhouse

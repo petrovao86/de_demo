@@ -1,3 +1,6 @@
+include:
+    - docker-compose.warehouse.yml
+
 services:
   postgresql:
     image: postgres:17.4-alpine3.21
@@ -15,10 +18,11 @@ services:
 
 
   dagster_webserver:
-    image: de-demo:latest
+    image: de-demo-dagster:latest
     build:
       context: ..
       dockerfile: ./docker/de-demo.dockerfile
+      target: dagster
     entrypoint:
       - dagster-webserver
       - -h
@@ -46,10 +50,11 @@ services:
         max-file: 10
 
   dagster_daemon:
-    image: de-demo:latest
+    image: de-demo-dagster:latest
     build:
       context: ..
       dockerfile: ./docker/de-demo.dockerfile
+      target: dagster
     entrypoint:
       - dagster-daemon
       - run

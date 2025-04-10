@@ -4,9 +4,10 @@
 name = "agate"
 version = "1.9.1"
 description = "A data analysis library that is optimized for humans instead of machines."
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "agate-1.9.1-py2.py3-none-any.whl", hash = "sha256:1cf329510b3dde07c4ad1740b7587c9c679abc3dcd92bb1107eabc10c2e03c50"},
     {file = "agate-1.9.1.tar.gz", hash = "sha256:bc60880c2ee59636a2a80cd8603d63f995be64526abf3cbba12f00767bcd5b3d"},
@@ -28,9 +29,10 @@ test = ["PyICU (>=2.4.2)", "backports.zoneinfo", "coverage (>=3.7.1)", "cssselec
 name = "alembic"
 version = "1.15.2"
 description = "A database migration tool for SQLAlchemy."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "alembic-1.15.2-py3-none-any.whl", hash = "sha256:2e76bd916d547f6900ec4bb5a90aeac1485d2c92536923d0b138c02b126edc53"},
     {file = "alembic-1.15.2.tar.gz", hash = "sha256:1c72391bbdeffccfe317eefba686cb9a3c078005478885413b95c3b26c57a8a7"},
@@ -60,9 +62,10 @@ files = [
 name = "antlr4-python3-runtime"
 version = "4.13.2"
 description = "ANTLR 4.13.2 runtime for Python 3"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "antlr4_python3_runtime-4.13.2-py3-none-any.whl", hash = "sha256:fe3835eb8d33daece0e799090eda89719dbccee7aa39ef94eed3818cafa5a7e8"},
     {file = "antlr4_python3_runtime-4.13.2.tar.gz", hash = "sha256:909b647e1d2fc2b70180ac586df3933e38919c85f98ccc656a96cd3f25ef3916"},
@@ -94,9 +97,10 @@ trio = ["trio (>=0.26.1)"]
 name = "attrs"
 version = "25.3.0"
 description = "Classes Without Boilerplate"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "attrs-25.3.0-py3-none-any.whl", hash = "sha256:427318ce031701fea540783410126f03899a97ffc6f61596ad581ac2e40e3bc3"},
     {file = "attrs-25.3.0.tar.gz", hash = "sha256:75d7cefc7fb576747b2c81b4442d4d4a1ce0900973527c011d1030fd3bf4af1b"},
@@ -114,9 +118,10 @@ tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 name = "babel"
 version = "2.17.0"
 description = "Internationalization utilities"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "babel-2.17.0-py3-none-any.whl", hash = "sha256:4d0b53093fdfb4b21c92b5213dba5a1b23885afa8383709427046b21c366e5f2"},
     {file = "babel-2.17.0.tar.gz", hash = "sha256:0c54cffb19f690cdcc52a3b50bcbf71e07a808d1c80d549f2459b9d2cf0afb9d"},
@@ -129,9 +134,10 @@ dev = ["backports.zoneinfo", "freezegun (>=1.0,<2.0)", "jinja2 (>=3.0)", "pytest
 name = "backoff"
 version = "2.2.1"
 description = "Function decoration for backoff and retry"
-optional = false
+optional = true
 python-versions = ">=3.7,<4.0"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "backoff-2.2.1-py3-none-any.whl", hash = "sha256:63579f9a0628e06278f7e47b7d7d5b6ce20dc65c5e96a6f3ca99a6adca0396e8"},
     {file = "backoff-2.2.1.tar.gz", hash = "sha256:03f829f5bb1923180821643f8753b0502c3b682293992485b0eef2807afa5cba"},
@@ -336,9 +342,10 @@ files = [
 name = "click"
 version = "8.1.8"
 description = "Composable command line interface toolkit"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "click-8.1.8-py3-none-any.whl", hash = "sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2"},
     {file = "click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a"},
@@ -580,15 +587,16 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
-markers = {dev = "sys_platform == \"win32\""}
+markers = {main = "(extra == \"dbt\" or extra == \"dagster\" or extra == \"api\") and (extra == \"dbt\" or platform_system == \"Windows\" or sys_platform == \"win32\")", dev = "sys_platform == \"win32\""}
 
 [[package]]
 name = "coloredlogs"
 version = "14.0"
 description = "Colored terminal output for Python's logging module"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "coloredlogs-14.0-py2.py3-none-any.whl", hash = "sha256:346f58aad6afd48444c2468618623638dadab76e4e70d5e10822676f2d32226a"},
     {file = "coloredlogs-14.0.tar.gz", hash = "sha256:a1fab193d2053aa6c0a97608c4342d031f1f93a3d1218432c59322441d31a505"},
@@ -680,9 +688,10 @@ toml = ["tomli"]
 name = "daff"
 version = "1.3.46"
 description = "Diff and patch tables"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "daff-1.3.46.tar.gz", hash = "sha256:22d0da9fd6a3275b54c926a9c97b180f9258aad65113ea18f3fec52cbadcd818"},
 ]
@@ -691,9 +700,10 @@ files = [
 name = "dagster"
 version = "1.10.9"
 description = "Dagster is an orchestration platform for the development, production, and observation of data assets."
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "dagster-1.10.9-py3-none-any.whl", hash = "sha256:e32a48cd8bb9dd087477d50f276f173e096ff85e8280ea8fb5e112198b6051df"},
     {file = "dagster-1.10.9.tar.gz", hash = "sha256:f2b9e96cf908c7a4e5a450a51bf853f5a0b86ab20256046c597a051abf1c105b"},
@@ -742,9 +752,10 @@ test-components = ["duckdb", "jsonschema", "pandas", "tomlkit"]
 name = "dagster-dbt"
 version = "0.26.9"
 description = "A Dagster integration for dbt"
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dagster-dbt-0.26.9.tar.gz", hash = "sha256:da8178f67a160e8fbe53b00ea5760a4d1bc1053edc69c635263a692deaf4730b"},
     {file = "dagster_dbt-0.26.9-py3-none-any.whl", hash = "sha256:0cce2b8b858edfc4525e51f6c1377178cb8e71b1ede124ed47c03e84e76dc336"},
@@ -769,9 +780,10 @@ test = ["dagster-duckdb", "dagster-duckdb-pandas", "dbt-duckdb (<1.9.2)", "pytes
 name = "dagster-graphql"
 version = "1.10.9"
 description = "The GraphQL frontend to python dagster."
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "dagster-graphql-1.10.9.tar.gz", hash = "sha256:b75ee357eb5d73ea7477b3bc88d859ffac95fc151b0eea060f854b5ec1f0914a"},
     {file = "dagster_graphql-1.10.9-py3-none-any.whl", hash = "sha256:21daa63dc022f6b649d1d71398fe4b923ccc151ba228c2bfc78a1afd98e63270"},
@@ -788,9 +800,10 @@ starlette = "*"
 name = "dagster-pipes"
 version = "1.10.9"
 description = "Toolkit for Dagster integrations with transform logic outside of Dagster"
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "dagster-pipes-1.10.9.tar.gz", hash = "sha256:be2ac055763e3a5ad9ef33ac967373db48fa6a08ebc2acdee7f6dc5b7f9c7790"},
     {file = "dagster_pipes-1.10.9-py3-none-any.whl", hash = "sha256:a0aa19d026abd13951c604e4eb87688a4dba1f8888606622e0432283ec28e5de"},
@@ -803,9 +816,10 @@ stubs = ["google-cloud-storage"]
 name = "dagster-postgres"
 version = "0.26.9"
 description = "A Dagster integration for postgres"
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "dagster-postgres-0.26.9.tar.gz", hash = "sha256:65db897ddb6e7807f175f8642d9e4782c309427d729d4bdc1e100f4cf96a82e0"},
     {file = "dagster_postgres-0.26.9-py3-none-any.whl", hash = "sha256:ab1388b0fd0e89f18291afe37878964073fed199dbe8bb9da61c30766576b1bd"},
@@ -819,9 +833,10 @@ psycopg2-binary = "*"
 name = "dagster-shared"
 version = "0.26.9"
 description = "Shared code between dagster and dagster-dg."
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "dagster_shared-0.26.9-py3-none-any.whl", hash = "sha256:35235e29e86966cf8cbd14d564922469ee68d80f9c88392b3247986c8f45ba59"},
     {file = "dagster_shared-0.26.9.tar.gz", hash = "sha256:4994c3bd47397e11040eb0b933cef218959bb16716d6d6642bfb009f471f098a"},
@@ -840,9 +855,10 @@ test = ["pytest"]
 name = "dagster-webserver"
 version = "1.10.9"
 description = "Web UI for dagster."
-optional = false
+optional = true
 python-versions = "<3.13,>=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "dagster-webserver-1.10.9.tar.gz", hash = "sha256:745086a5dd5e9634bf70bb9b7f28d2663a2f755172574d3e026e9a4665edb64c"},
     {file = "dagster_webserver-1.10.9-py3-none-any.whl", hash = "sha256:743755385f04e2c2acbd1d6e0b46205c392ac8622244384f562a50767bc367a0"},
@@ -863,9 +879,10 @@ test = ["starlette[full]"]
 name = "dbt-adapters"
 version = "1.14.5"
 description = "The set of adapter protocols and base functionality that supports integration with dbt-core"
-optional = false
+optional = true
 python-versions = ">=3.9.0"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dbt_adapters-1.14.5-py3-none-any.whl", hash = "sha256:c72189b780eaa7ca83a73d0db3cb32b014112f21cdabbbc519937bfa8be1dae8"},
     {file = "dbt_adapters-1.14.5.tar.gz", hash = "sha256:dc87762fa19de3a9f0f8d56a2709af0033f87a51b52e6850ec3cba55bda2d7f3"},
@@ -902,9 +919,10 @@ setuptools = ">=0.69"
 name = "dbt-common"
 version = "1.17.0"
 description = "The shared common utilities that dbt-core and adapter implementations use"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dbt_common-1.17.0-py3-none-any.whl", hash = "sha256:2f8ed5721908d84d3487e2461e4cec11068db02c3f93a0aaf06771ab4f92055b"},
     {file = "dbt_common-1.17.0.tar.gz", hash = "sha256:257c94a7726ce47698d54e553f0df5b98a410281b4d8fc91713d1dc3319dd8ad"},
@@ -933,9 +951,10 @@ test = ["hypothesis (>=6.87,<7.0)", "pytest (>=7.3,<8.0)", "pytest-cov (>=4.1,<5
 name = "dbt-core"
 version = "1.8.9"
 description = "With dbt, data analysts and engineers can build analytics the way engineers build applications."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dbt_core-1.8.9-py3-none-any.whl", hash = "sha256:d376cf9c6eb13ed1e2a654e164bf84f4e66c57621d1681733835e49bb9cb1683"},
     {file = "dbt_core-1.8.9.tar.gz", hash = "sha256:763a69b0fa4551ceff7a98b88b4f7af05eff0db959086373369b30b342bb5b26"},
@@ -967,9 +986,10 @@ typing-extensions = ">=4.4"
 name = "dbt-extractor"
 version = "0.6.0"
 description = "A tool to analyze and extract information from Jinja used in dbt projects."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dbt_extractor-0.6.0-cp39-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:4b6b1e70dde78cb904ca7a8958c2c803e77779b6ce108f4ea7ac479f5700db89"},
     {file = "dbt_extractor-0.6.0-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:dcf14ed245de8df269815ff4c4f555fa72d2621f4fff37c023b8c99d0e421b4f"},
@@ -993,9 +1013,10 @@ files = [
 name = "dbt-semantic-interfaces"
 version = "0.5.1"
 description = "The shared semantic layer definitions that dbt-core and MetricFlow use"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "dbt_semantic_interfaces-0.5.1-py3-none-any.whl", hash = "sha256:b95ff3a6721dc30f6278cb84933d95e0ef27766e67eeb6bb41906242e77f7c9b"},
     {file = "dbt_semantic_interfaces-0.5.1.tar.gz", hash = "sha256:3a497abef1ba8112affdf804b26bfdcd5468ed95cc924b509068e18d371c7c4d"},
@@ -1016,9 +1037,10 @@ typing-extensions = ">=4.4,<5"
 name = "deepdiff"
 version = "7.0.1"
 description = "Deep Difference and Search of any Python object/data. Recreate objects by adding adding deltas to each other."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "deepdiff-7.0.1-py3-none-any.whl", hash = "sha256:447760081918216aa4fd4ca78a4b6a848b81307b2ea94c810255334b759e1dc3"},
     {file = "deepdiff-7.0.1.tar.gz", hash = "sha256:260c16f052d4badbf60351b4f77e8390bee03a0b516246f6839bc813fb429ddf"},
@@ -1035,9 +1057,10 @@ optimize = ["orjson"]
 name = "dnspython"
 version = "2.7.0"
 description = "DNS toolkit"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "dnspython-2.7.0-py3-none-any.whl", hash = "sha256:b4c34b7d10b51bcc3a5071e7b8dee77939f1e878477eeecc965e9835f63c6c86"},
     {file = "dnspython-2.7.0.tar.gz", hash = "sha256:ce9c432eda0dc91cf618a5cedf1a4e142651196bbcd2c80e89ed5a907e5cfaf1"},
@@ -1056,9 +1079,10 @@ wmi = ["wmi (>=1.5.1)"]
 name = "docstring-parser"
 version = "0.16"
 description = "Parse Python docstrings in reST, Google and Numpydoc format"
-optional = false
+optional = true
 python-versions = ">=3.6,<4.0"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "docstring_parser-0.16-py3-none-any.whl", hash = "sha256:bf0a1387354d3691d102edef7ec124f219ef639982d096e26e3b60aeffa90637"},
     {file = "docstring_parser-0.16.tar.gz", hash = "sha256:538beabd0af1e2db0146b6bd3caa526c35a34d61af9fd2887f3a8a27a739aa6e"},
@@ -1068,9 +1092,10 @@ files = [
 name = "email-validator"
 version = "2.2.0"
 description = "A robust email address syntax and deliverability validation library."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "email_validator-2.2.0-py3-none-any.whl", hash = "sha256:561977c2d73ce3611850a06fa56b414621e0c8faa9d66f2611407d87465da631"},
     {file = "email_validator-2.2.0.tar.gz", hash = "sha256:cb690f344c617a714f22e66ae771445a1ceb46821152df8e165c5f9a364582b7"},
@@ -1084,9 +1109,10 @@ idna = ">=2.0.0"
 name = "fastapi"
 version = "0.115.12"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "fastapi-0.115.12-py3-none-any.whl", hash = "sha256:e94613d6c05e27be7ffebdd6ea5f388112e5e430c8f7d6494a9d1d88d43e814d"},
     {file = "fastapi-0.115.12.tar.gz", hash = "sha256:1e2c2a2646905f9e83d32f04a3f86aff4a286669c6c950ca95b5fd68c2602681"},
@@ -1111,9 +1137,10 @@ standard = ["email-validator (>=2.0.0)", "fastapi-cli[standard] (>=0.0.5)", "htt
 name = "fastapi-cli"
 version = "0.0.7"
 description = "Run and manage FastAPI apps from the command line with FastAPI CLI. 🚀"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "fastapi_cli-0.0.7-py3-none-any.whl", hash = "sha256:d549368ff584b2804336c61f192d86ddea080c11255f375959627911944804f4"},
     {file = "fastapi_cli-0.0.7.tar.gz", hash = "sha256:02b3b65956f526412515907a0793c9094abd4bfb5457b389f645b0ea6ba3605e"},
@@ -1131,9 +1158,10 @@ standard = ["uvicorn[standard] (>=0.15.0)"]
 name = "filelock"
 version = "3.18.0"
 description = "A platform independent file lock."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "filelock-3.18.0-py3-none-any.whl", hash = "sha256:c401f4f8377c4464e6db25fff06205fd89bdd83b65eb0488ed1b160f780e21de"},
     {file = "filelock-3.18.0.tar.gz", hash = "sha256:adbc88eabb99d2fec8c9c1b229b171f18afa655400173ddc653d5d01501fb9f2"},
@@ -1162,9 +1190,10 @@ termcolor = "*"
 name = "fsspec"
 version = "2025.3.2"
 description = "File-system specification"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "fsspec-2025.3.2-py3-none-any.whl", hash = "sha256:2daf8dc3d1dfa65b6aa37748d112773a7a08416f6c70d96b264c96476ecaf711"},
     {file = "fsspec-2025.3.2.tar.gz", hash = "sha256:e52c77ef398680bbd6a98c0e628fbc469491282981209907bbc8aea76a04fdc6"},
@@ -1202,9 +1231,10 @@ tqdm = ["tqdm"]
 name = "gql"
 version = "3.5.0"
 description = "GraphQL client for Python"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "gql-3.5.0-py2.py3-none-any.whl", hash = "sha256:70dda5694a5b194a8441f077aa5fb70cc94e4ec08016117523f013680901ecb7"},
     {file = "gql-3.5.0.tar.gz", hash = "sha256:ccb9c5db543682b28f577069950488218ed65d4ac70bb03b6929aaadaf636de9"},
@@ -1233,9 +1263,10 @@ websockets = ["websockets (>=10,<12)"]
 name = "graphene"
 version = "3.4.3"
 description = "GraphQL Framework for Python"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "graphene-3.4.3-py2.py3-none-any.whl", hash = "sha256:820db6289754c181007a150db1f7fff544b94142b556d12e3ebc777a7bf36c71"},
     {file = "graphene-3.4.3.tar.gz", hash = "sha256:2a3786948ce75fe7e078443d37f609cbe5bb36ad8d6b828740ad3b95ed1a0aaa"},
@@ -1255,9 +1286,10 @@ test = ["coveralls (>=3.3,<5)", "pytest (>=8,<9)", "pytest-asyncio (>=0.16,<2)",
 name = "graphql-core"
 version = "3.2.6"
 description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
-optional = false
+optional = true
 python-versions = "<4,>=3.6"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "graphql_core-3.2.6-py3-none-any.whl", hash = "sha256:78b016718c161a6fb20a7d97bbf107f331cd1afe53e45566c59f776ed7f0b45f"},
     {file = "graphql_core-3.2.6.tar.gz", hash = "sha256:c08eec22f9e40f0bd61d805907e3b3b1b9a320bc606e23dc145eebca07c8fbab"},
@@ -1267,9 +1299,10 @@ files = [
 name = "graphql-relay"
 version = "3.2.0"
 description = "Relay library for graphql-core"
-optional = false
+optional = true
 python-versions = ">=3.6,<4"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "graphql-relay-3.2.0.tar.gz", hash = "sha256:1ff1c51298356e481a0be009ccdff249832ce53f30559c1338f22a0e0d17250c"},
     {file = "graphql_relay-3.2.0-py3-none-any.whl", hash = "sha256:c9b22bd28b170ba1fe674c74384a8ff30a76c8e26f88ac3aa1584dd3179953e5"},
@@ -1282,10 +1315,10 @@ graphql-core = ">=3.2,<3.3"
 name = "greenlet"
 version = "3.1.1"
 description = "Lightweight in-process concurrent programming"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\""
+markers = "extra == \"dbt\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\") or extra == \"dagster\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\")"
 files = [
     {file = "greenlet-3.1.1-cp310-cp310-macosx_11_0_universal2.whl", hash = "sha256:0bbae94a29c9e5c7e4a2b7f0aae5c17e8e90acbfd3bf6270eeba60c39fce3563"},
     {file = "greenlet-3.1.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0fde093fb93f35ca72a556cf72c92ea3ebfda3d79fc35bb19fbe685853869a83"},
@@ -1370,9 +1403,10 @@ test = ["objgraph", "psutil"]
 name = "grpcio"
 version = "1.71.0"
 description = "HTTP/2-based RPC framework"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "grpcio-1.71.0-cp310-cp310-linux_armv7l.whl", hash = "sha256:c200cb6f2393468142eb50ab19613229dcc7829b5ccee8b658a36005f6669fdd"},
     {file = "grpcio-1.71.0-cp310-cp310-macosx_12_0_universal2.whl", hash = "sha256:b2266862c5ad664a380fbbcdbdb8289d71464c42a8c29053820ee78ba0119e5d"},
@@ -1434,9 +1468,10 @@ protobuf = ["grpcio-tools (>=1.71.0)"]
 name = "grpcio-health-checking"
 version = "1.71.0"
 description = "Standard Health Checking Service for gRPC"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "grpcio_health_checking-1.71.0-py3-none-any.whl", hash = "sha256:b7d9b7a7606ab4cd02d23bd1d3943843f784ffc987c9bfec14c9d058d9e279db"},
     {file = "grpcio_health_checking-1.71.0.tar.gz", hash = "sha256:ff9bd55beb97ce3322fda2ae58781c9d6c6fcca6a35ca3b712975d9f75dd30af"},
@@ -1484,9 +1519,10 @@ trio = ["trio (>=0.22.0,<1.0)"]
 name = "httptools"
 version = "0.6.4"
 description = "A collection of framework independent HTTP protocol utils."
-optional = false
+optional = true
 python-versions = ">=3.8.0"
 groups = ["main"]
+markers = "extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "httptools-0.6.4-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:3c73ce323711a6ffb0d247dcd5a550b8babf0f757e86a52558fe5b86d6fefcc0"},
     {file = "httptools-0.6.4-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:345c288418f0944a6fe67be8e6afa9262b18c7626c3ef3c28adc5eabc06a68da"},
@@ -1565,9 +1601,10 @@ zstd = ["zstandard (>=0.18.0)"]
 name = "humanfriendly"
 version = "10.0"
 description = "Human friendly output for text interfaces using Python"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "humanfriendly-10.0-py2.py3-none-any.whl", hash = "sha256:1697e1a8a8f550fd43c2865cd84542fc175a61dcb779b6fee18cf6b6ccba1477"},
     {file = "humanfriendly-10.0.tar.gz", hash = "sha256:6b0b831ce8f15f7300721aa49829fc4e83921a9a301cc7f606be6686a2288ddc"},
@@ -1595,9 +1632,10 @@ all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2
 name = "importlib-metadata"
 version = "6.11.0"
 description = "Read metadata from Python packages"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "importlib_metadata-6.11.0-py3-none-any.whl", hash = "sha256:f0afba6205ad8f8947c7d338b5342d5db2afbfd82f9cbef7879a9539cc12eb9b"},
     {file = "importlib_metadata-6.11.0.tar.gz", hash = "sha256:1231cf92d825c9e03cfc4da076a16de6422c863558229ea0b22b675657463443"},
@@ -1657,9 +1695,10 @@ files = [
 name = "isodate"
 version = "0.6.1"
 description = "An ISO 8601 date/time/duration parser and formatter"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "isodate-0.6.1-py2.py3-none-any.whl", hash = "sha256:0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96"},
     {file = "isodate-0.6.1.tar.gz", hash = "sha256:48c5881de7e8b0a0d648cb024c8062dc84e7b840ed81e864c7614fd3c127bde9"},
@@ -1672,9 +1711,10 @@ six = "*"
 name = "jinja2"
 version = "3.1.6"
 description = "A very fast and expressive template engine."
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "jinja2-3.1.6-py3-none-any.whl", hash = "sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"},
     {file = "jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d"},
@@ -1690,9 +1730,10 @@ i18n = ["Babel (>=2.7)"]
 name = "jsonschema"
 version = "4.23.0"
 description = "An implementation of JSON Schema validation for Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "jsonschema-4.23.0-py3-none-any.whl", hash = "sha256:fbadb6f8b144a8f8cf9f0b89ba94501d143e50411a1278633f56a7acf7fd5566"},
     {file = "jsonschema-4.23.0.tar.gz", hash = "sha256:d71497fef26351a33265337fa77ffeb82423f3ea21283cd9467bb03999266bc4"},
@@ -1712,9 +1753,10 @@ format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 name = "jsonschema-specifications"
 version = "2024.10.1"
 description = "The JSON Schema meta-schemas and vocabularies, exposed as a Registry"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "jsonschema_specifications-2024.10.1-py3-none-any.whl", hash = "sha256:a09a0680616357d9a0ecf05c12ad234479f549239d0f5b55f3deea67475da9bf"},
     {file = "jsonschema_specifications-2024.10.1.tar.gz", hash = "sha256:0f38b83639958ce1152d02a7f062902c41c8fd20d558b0c34344292d417ae272"},
@@ -1727,9 +1769,10 @@ referencing = ">=0.31.0"
 name = "leather"
 version = "0.4.0"
 description = "Python charting for 80% of humans."
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "leather-0.4.0-py2.py3-none-any.whl", hash = "sha256:18290bc93749ae39039af5e31e871fcfad74d26c4c3ea28ea4f681f4571b3a2b"},
     {file = "leather-0.4.0.tar.gz", hash = "sha256:f964bec2086f3153a6c16e707f20cb718f811f57af116075f4c0f4805c608b95"},
@@ -1742,9 +1785,10 @@ test = ["cssselect (>=0.9.1)", "lxml (>=3.6.0)", "pytest", "pytest-cov"]
 name = "logbook"
 version = "1.5.3"
 description = "A logging replacement for Python"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "Logbook-1.5.3-cp27-cp27m-win32.whl", hash = "sha256:56ee54c11df3377314cedcd6507638f015b4b88c0238c2e01b5eb44fd3a6ad1b"},
     {file = "Logbook-1.5.3-cp27-cp27m-win_amd64.whl", hash = "sha256:2dc85f1510533fddb481e97677bb7bca913560862734c0b3b289bfed04f78c92"},
@@ -1829,9 +1873,10 @@ tests = ["psutil", "pytest (!=3.3.0)", "pytest-cov"]
 name = "mako"
 version = "1.3.9"
 description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "Mako-1.3.9-py3-none-any.whl", hash = "sha256:95920acccb578427a9aa38e37a186b1e43156c87260d7ba18ca63aa4c7cbd3a1"},
     {file = "mako-1.3.9.tar.gz", hash = "sha256:b5d65ff3462870feec922dbccf38f6efb44e5714d7b593a656be86663d8600ac"},
@@ -1849,9 +1894,10 @@ testing = ["pytest"]
 name = "markdown-it-py"
 version = "3.0.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "markdown-it-py-3.0.0.tar.gz", hash = "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb"},
     {file = "markdown_it_py-3.0.0-py3-none-any.whl", hash = "sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1"},
@@ -1874,9 +1920,10 @@ testing = ["coverage", "pytest", "pytest-cov", "pytest-regressions"]
 name = "markupsafe"
 version = "3.0.2"
 description = "Safely add untrusted strings to HTML/XML markup."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "MarkupSafe-3.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:7e94c425039cde14257288fd61dcfb01963e658efbc0ff54f5306b06054700f8"},
     {file = "MarkupSafe-3.0.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9e2d922824181480953426608b81967de705c3cef4d1af983af849d7bd619158"},
@@ -1945,9 +1992,10 @@ files = [
 name = "mashumaro"
 version = "3.14"
 description = "Fast and well tested serialization library"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "mashumaro-3.14-py3-none-any.whl", hash = "sha256:c12a649599a8f7b1a0b35d18f12e678423c3066189f7bc7bd8dd431c5c8132c3"},
     {file = "mashumaro-3.14.tar.gz", hash = "sha256:5ef6f2b963892cbe9a4ceb3441dfbea37f8c3412523f25d42e9b3a7186555f1d"},
@@ -1967,9 +2015,10 @@ yaml = ["pyyaml (>=3.13)"]
 name = "mdurl"
 version = "0.1.2"
 description = "Markdown URL utilities"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
@@ -1979,9 +2028,10 @@ files = [
 name = "minimal-snowplow-tracker"
 version = "0.0.2"
 description = "A minimal snowplow event tracker for Python. Add analytics to your Python and Django apps, webapps and games"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "minimal-snowplow-tracker-0.0.2.tar.gz", hash = "sha256:acabf7572db0e7f5cbf6983d495eef54081f71be392330eb3aadb9ccb39daaa4"},
 ]
@@ -1994,9 +2044,10 @@ six = ">=1.9.0,<2.0"
 name = "more-itertools"
 version = "10.6.0"
 description = "More routines for operating on iterables, beyond itertools"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "more-itertools-10.6.0.tar.gz", hash = "sha256:2cd7fad1009c31cc9fb6a035108509e6547547a7a738374f10bd49a09eb3ee3b"},
     {file = "more_itertools-10.6.0-py3-none-any.whl", hash = "sha256:6eb054cb4b6db1473f6e15fcc676a08e4732548acd47c708f0e179c2c7c01e89"},
@@ -2006,9 +2057,10 @@ files = [
 name = "msgpack"
 version = "1.1.0"
 description = "MessagePack serializer"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "msgpack-1.1.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:7ad442d527a7e358a469faf43fda45aaf4ac3249c8310a82f0ccff9164e5dccd"},
     {file = "msgpack-1.1.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:74bed8f63f8f14d75eec75cf3d04ad581da6b914001b474a5d3cd3372c8cc27d"},
@@ -2080,9 +2132,10 @@ files = [
 name = "multidict"
 version = "6.2.0"
 description = "multidict implementation"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "multidict-6.2.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:b9f6392d98c0bd70676ae41474e2eecf4c7150cb419237a41f8f96043fcb81d1"},
     {file = "multidict-6.2.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:3501621d5e86f1a88521ea65d5cad0a0834c77b26f193747615b7c911e5422d2"},
@@ -2182,9 +2235,10 @@ files = [
 name = "networkx"
 version = "3.4.2"
 description = "Python package for creating and manipulating graphs and networks"
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "networkx-3.4.2-py3-none-any.whl", hash = "sha256:df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f"},
     {file = "networkx-3.4.2.tar.gz", hash = "sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1"},
@@ -2202,9 +2256,10 @@ test = ["pytest (>=7.2)", "pytest-cov (>=4.0)"]
 name = "ordered-set"
 version = "4.1.0"
 description = "An OrderedSet is a custom MutableSet that remembers its order, so that every"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "ordered-set-4.1.0.tar.gz", hash = "sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"},
     {file = "ordered_set-4.1.0-py3-none-any.whl", hash = "sha256:046e1132c71fcf3330438a539928932caf51ddbc582496833e23de611de14562"},
@@ -2217,9 +2272,10 @@ dev = ["black", "mypy", "pytest"]
 name = "orjson"
 version = "3.10.16"
 description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "orjson-3.10.16-cp310-cp310-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl", hash = "sha256:4cb473b8e79154fa778fb56d2d73763d977be3dcc140587e07dbc545bbfc38f8"},
     {file = "orjson-3.10.16-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:622a8e85eeec1948690409a19ca1c7d9fd8ff116f4861d261e6ae2094fe59a00"},
@@ -2302,14 +2358,16 @@ files = [
     {file = "packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759"},
     {file = "packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"},
 ]
+markers = {main = "extra == \"dbt\" or extra == \"dagster\""}
 
 [[package]]
 name = "parsedatetime"
 version = "2.6"
 description = "Parse human-readable date/time text."
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "parsedatetime-2.6-py3-none-any.whl", hash = "sha256:cb96edd7016872f58479e35879294258c71437195760746faffedb692aef000b"},
     {file = "parsedatetime-2.6.tar.gz", hash = "sha256:4cb368fbb18a0b7231f4d76119165451c8d2e35951455dfee97c62a87b04d455"},
@@ -2319,9 +2377,10 @@ files = [
 name = "pathspec"
 version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08"},
     {file = "pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"},
@@ -2347,9 +2406,10 @@ testing = ["pytest", "pytest-benchmark"]
 name = "prometheus-client"
 version = "0.21.1"
 description = "Python client for the Prometheus monitoring system."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "prometheus_client-0.21.1-py3-none-any.whl", hash = "sha256:594b45c410d6f4f8888940fe80b5cc2521b305a1fafe1c58609ef715a001f301"},
     {file = "prometheus_client-0.21.1.tar.gz", hash = "sha256:252505a722ac04b0456be05c05f75f45d760c2911ffc45f2a06bcaed9f3ae3fb"},
@@ -2362,9 +2422,10 @@ twisted = ["twisted"]
 name = "prometheus-fastapi-instrumentator"
 version = "7.1.0"
 description = "Instrument your FastAPI app with Prometheus metrics"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "prometheus_fastapi_instrumentator-7.1.0-py3-none-any.whl", hash = "sha256:978130f3c0bb7b8ebcc90d35516a6fe13e02d2eb358c8f83887cdef7020c31e9"},
     {file = "prometheus_fastapi_instrumentator-7.1.0.tar.gz", hash = "sha256:be7cd61eeea4e5912aeccb4261c6631b3f227d8924542d79eaf5af3f439cbe5e"},
@@ -2378,9 +2439,10 @@ starlette = ">=0.30.0,<1.0.0"
 name = "propcache"
 version = "0.3.1"
 description = "Accelerated property cache"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "propcache-0.3.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:f27785888d2fdd918bc36de8b8739f2d6c791399552333721b58193f68ea3e98"},
     {file = "propcache-0.3.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d4e89cde74154c7b5957f87a355bb9c8ec929c167b59c83d90654ea36aeb6180"},
@@ -2486,9 +2548,10 @@ files = [
 name = "protobuf"
 version = "5.29.4"
 description = ""
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "protobuf-5.29.4-cp310-abi3-win32.whl", hash = "sha256:13eb236f8eb9ec34e63fc8b1d6efd2777d062fa6aaa68268fb67cf77f6839ad7"},
     {file = "protobuf-5.29.4-cp310-abi3-win_amd64.whl", hash = "sha256:bcefcdf3976233f8a502d265eb65ea740c989bacc6c30a58290ed0e519eb4b8d"},
@@ -2507,10 +2570,10 @@ files = [
 name = "psutil"
 version = "7.0.0"
 description = "Cross-platform lib for process and system monitoring in Python.  NOTE: the syntax of this script MUST be kept compatible with Python 2.7."
-optional = false
+optional = true
 python-versions = ">=3.6"
 groups = ["main"]
-markers = "platform_system == \"Windows\""
+markers = "extra == \"dbt\" and platform_system == \"Windows\" or extra == \"dagster\" and platform_system == \"Windows\""
 files = [
     {file = "psutil-7.0.0-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:101d71dc322e3cffd7cea0650b09b3d08b8e7c4109dd6809fe452dfd00e58b25"},
     {file = "psutil-7.0.0-cp36-abi3-macosx_11_0_arm64.whl", hash = "sha256:39db632f6bb862eeccf56660871433e111b6ea58f2caea825571951d4b6aa3da"},
@@ -2532,9 +2595,10 @@ test = ["pytest", "pytest-xdist", "setuptools"]
 name = "psycopg2-binary"
 version = "2.9.10"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "psycopg2-binary-2.9.10.tar.gz", hash = "sha256:4b3df0e6990aa98acda57d983942eff13d824135fe2250e6522edaa782a06de2"},
     {file = "psycopg2_binary-2.9.10-cp310-cp310-macosx_12_0_x86_64.whl", hash = "sha256:0ea8e3d0ae83564f2fc554955d327fa081d065c8ca5cc6d2abb643e2c9c1200f"},
@@ -2778,9 +2842,10 @@ yaml = ["pyyaml (>=6.0.1)"]
 name = "pygments"
 version = "2.19.1"
 description = "Pygments is a syntax highlighting package written in Python."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "pygments-2.19.1-py3-none-any.whl", hash = "sha256:9ea1544ad55cecf4b8242fab6dd35a93bbce657034b0611ee383099054ab6d8c"},
     {file = "pygments-2.19.1.tar.gz", hash = "sha256:61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f"},
@@ -2793,10 +2858,10 @@ windows-terminal = ["colorama (>=0.4.6)"]
 name = "pyreadline3"
 version = "3.5.4"
 description = "A python implementation of GNU readline."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "sys_platform == \"win32\""
+markers = "extra == \"dbt\" and sys_platform == \"win32\" or extra == \"dagster\" and sys_platform == \"win32\""
 files = [
     {file = "pyreadline3-3.5.4-py3-none-any.whl", hash = "sha256:eaf8e6cc3c49bcccf145fc6067ba8643d1df34d604a1ec0eccbf7a18e6d3fae6"},
     {file = "pyreadline3-3.5.4.tar.gz", hash = "sha256:8d57d53039a1c75adba8e50dd3d992b28143480816187ea5efbd5c78e6c885b7"},
@@ -2849,9 +2914,10 @@ testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
 name = "python-dateutil"
 version = "2.9.0.post0"
 description = "Extensions to the standard Python datetime module"
-optional = false
+optional = true
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
     {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
@@ -2879,9 +2945,10 @@ cli = ["click (>=5.0)"]
 name = "python-multipart"
 version = "0.0.20"
 description = "A streaming multipart parser for Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "python_multipart-0.0.20-py3-none-any.whl", hash = "sha256:8a62d3a8335e06589fe01f2a3e178cdcc632f3fbe0d492ad9ee0ec35aab1f104"},
     {file = "python_multipart-0.0.20.tar.gz", hash = "sha256:8dd0cab45b8e23064ae09147625994d090fa46f5b0d1e13af944c331a7fa9d13"},
@@ -2891,9 +2958,10 @@ files = [
 name = "python-slugify"
 version = "8.0.4"
 description = "A Python slugify application that also handles Unicode"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "python-slugify-8.0.4.tar.gz", hash = "sha256:59202371d1d05b54a9e7720c5e038f928f45daaffe41dd10822f3907b937c856"},
     {file = "python_slugify-8.0.4-py2.py3-none-any.whl", hash = "sha256:276540b79961052b66b7d116620b36518847f52d5fd9e3a70164fc8c50faa6b8"},
@@ -2909,9 +2977,10 @@ unidecode = ["Unidecode (>=1.1.1)"]
 name = "pytimeparse"
 version = "1.1.8"
 description = "Time expression parser"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "pytimeparse-1.1.8-py2.py3-none-any.whl", hash = "sha256:04b7be6cc8bd9f5647a6325444926c3ac34ee6bc7e69da4367ba282f076036bd"},
     {file = "pytimeparse-1.1.8.tar.gz", hash = "sha256:e86136477be924d7e670646a98561957e8ca7308d44841e21f5ddea757556a0a"},
@@ -2933,10 +3002,10 @@ files = [
 name = "pywin32"
 version = "310"
 description = "Python for Window Extensions"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
-markers = "platform_system == \"Windows\""
+markers = "extra == \"dbt\" and platform_system == \"Windows\" or extra == \"dagster\" and platform_system == \"Windows\""
 files = [
     {file = "pywin32-310-cp310-cp310-win32.whl", hash = "sha256:6dd97011efc8bf51d6793a82292419eba2c71cf8e7250cfac03bba284454abc1"},
     {file = "pywin32-310-cp310-cp310-win_amd64.whl", hash = "sha256:c3e78706e4229b915a0821941a84e7ef420bf2b77e08c9dae3c76fd03fd2ae3d"},
@@ -2960,9 +3029,10 @@ files = [
 name = "pyyaml"
 version = "6.0.2"
 description = "YAML parser and emitter for Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "PyYAML-6.0.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:0a9a2848a5b7feac301353437eb7d5957887edbf81d56e903999a75a3d743086"},
     {file = "PyYAML-6.0.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:29717114e51c84ddfba879543fb232a6ed60086602313ca38cce623c1d62cfbf"},
@@ -3023,9 +3093,10 @@ files = [
 name = "referencing"
 version = "0.36.2"
 description = "JSON Referencing + Python"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "referencing-0.36.2-py3-none-any.whl", hash = "sha256:e8699adbbf8b5c7de96d8ffa0eb5c158b3beafce084968e2ea8bb08c6794dcd0"},
     {file = "referencing-0.36.2.tar.gz", hash = "sha256:df2e89862cd09deabbdba16944cc3f10feb6b3e6f18e902f7cc25609a34775aa"},
@@ -3062,9 +3133,10 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 name = "requests-toolbelt"
 version = "1.0.0"
 description = "A utility belt for advanced users of python-requests"
-optional = false
+optional = true
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "requests-toolbelt-1.0.0.tar.gz", hash = "sha256:7681a0a3d047012b5bdc0ee37d7f8f07ebe76ab08caeccfc3921ce23c88d5bc6"},
     {file = "requests_toolbelt-1.0.0-py2.py3-none-any.whl", hash = "sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06"},
@@ -3077,9 +3149,10 @@ requests = ">=2.0.1,<3.0.0"
 name = "rich"
 version = "14.0.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
-optional = false
+optional = true
 python-versions = ">=3.8.0"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "rich-14.0.0-py3-none-any.whl", hash = "sha256:1c9491e1951aac09caffd42f448ee3d04e58923ffe14993f6e83068dc395d7e0"},
     {file = "rich-14.0.0.tar.gz", hash = "sha256:82f1bc23a6a21ebca4ae0c45af9bdbc492ed20231dcb63f297d6d1021a9d5725"},
@@ -3096,9 +3169,10 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 name = "rich-toolkit"
 version = "0.14.1"
 description = "Rich toolkit for building command-line applications"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"api\""
 files = [
     {file = "rich_toolkit-0.14.1-py3-none-any.whl", hash = "sha256:dc92c0117d752446d04fdc828dbca5873bcded213a091a5d3742a2beec2e6559"},
     {file = "rich_toolkit-0.14.1.tar.gz", hash = "sha256:9248e2d087bfc01f3e4c5c8987e05f7fa744d00dd22fa2be3aa6e50255790b3f"},
@@ -3113,9 +3187,10 @@ typing-extensions = ">=4.12.2"
 name = "rpds-py"
 version = "0.24.0"
 description = "Python bindings to Rust's persistent data structures (rpds)"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "rpds_py-0.24.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:006f4342fe729a368c6df36578d7a348c7c716be1da0a1a0f86e3021f8e98724"},
     {file = "rpds_py-0.24.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:2d53747da70a4e4b17f559569d5f9506420966083a31c5fbd84e764461c4444b"},
@@ -3258,9 +3333,10 @@ type = ["importlib_metadata (>=7.0.2)", "jaraco.develop (>=7.21)", "mypy (==1.14
 name = "shellingham"
 version = "1.5.4"
 description = "Tool to Detect Surrounding Shell"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"api\""
 files = [
     {file = "shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686"},
     {file = "shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de"},
@@ -3270,9 +3346,10 @@ files = [
 name = "six"
 version = "1.17.0"
 description = "Python 2 and 3 compatibility utilities"
-optional = false
+optional = true
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
     {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
@@ -3294,9 +3371,10 @@ files = [
 name = "sqlalchemy"
 version = "2.0.40"
 description = "Database Abstraction Library"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "SQLAlchemy-2.0.40-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:ae9597cab738e7cc823f04a704fb754a9249f0b6695a6aeb63b74055cd417a96"},
     {file = "SQLAlchemy-2.0.40-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:37a5c21ab099a83d669ebb251fddf8f5cee4d75ea40a5a1653d9c43d60e20867"},
@@ -3390,9 +3468,10 @@ sqlcipher = ["sqlcipher3_binary"]
 name = "sqlglot"
 version = "26.12.1"
 description = "An easily customizable SQL parser and transpiler"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "sqlglot-26.12.1-py3-none-any.whl", hash = "sha256:46c3b55c914310240f576ccb5ee652df36f18ec1553ac7174f409e291224cf55"},
     {file = "sqlglot-26.12.1.tar.gz", hash = "sha256:ee67df004208650056d81cd2ed70fc7cc9c4a0711049b596db4a47e949c9a0bf"},
@@ -3409,9 +3488,10 @@ rs = ["sqlglotrs (==0.4.0)"]
 name = "sqlglotrs"
 version = "0.4.0"
 description = "An easily customizable SQL parser and transpiler"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "sqlglotrs-0.4.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:065bea5861d613ee27967cdd76d5176303595d9794e0a2dd4a1027f2ebe6ad91"},
     {file = "sqlglotrs-0.4.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9d033bce2be9db48deebf243610a4b467e76c68a80fd989de18f976712d92424"},
@@ -3490,9 +3570,10 @@ files = [
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "sqlparse-0.5.3-py3-none-any.whl", hash = "sha256:cf2196ed3418f3ba5de6af7e82c694a9fbdbfecccdfc72e281548517081f16ca"},
     {file = "sqlparse-0.5.3.tar.gz", hash = "sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272"},
@@ -3506,9 +3587,10 @@ doc = ["sphinx"]
 name = "starlette"
 version = "0.46.1"
 description = "The little ASGI library that shines."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "starlette-0.46.1-py3-none-any.whl", hash = "sha256:77c74ed9d2720138b25875133f3a2dae6d854af2ec37dceb56aef370c1d8a227"},
     {file = "starlette-0.46.1.tar.gz", hash = "sha256:3c88d58ee4bd1bb807c0d1acb381838afc7752f9ddaec81bbe4383611d833230"},
@@ -3524,9 +3606,10 @@ full = ["httpx (>=0.27.0,<0.29.0)", "itsdangerous", "jinja2", "python-multipart 
 name = "structlog"
 version = "25.2.0"
 description = "Structured Logging for Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "structlog-25.2.0-py3-none-any.whl", hash = "sha256:0fecea2e345d5d491b72f3db2e5fcd6393abfc8cd06a4851f21fcd4d1a99f437"},
     {file = "structlog-25.2.0.tar.gz", hash = "sha256:d9f9776944207d1035b8b26072b9b140c63702fd7aa57c2f85d28ab701bd8e92"},
@@ -3542,9 +3625,10 @@ typing = ["mypy (>=1.4)", "rich", "twisted"]
 name = "tabulate"
 version = "0.9.0"
 description = "Pretty-print tabular data"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
     {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
@@ -3572,9 +3656,10 @@ tests = ["pytest", "pytest-cov"]
 name = "text-unidecode"
 version = "1.3"
 description = "The most basic Text::Unidecode port"
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "text-unidecode-1.3.tar.gz", hash = "sha256:bad6603bb14d279193107714b288be206cac565dfa49aa5b105294dd5c4aab93"},
     {file = "text_unidecode-1.3-py2.py3-none-any.whl", hash = "sha256:1311f10e8b895935241623731c2ba64f4c455287888b18189350b67134a822e8"},
@@ -3584,9 +3669,10 @@ files = [
 name = "tomli"
 version = "2.2.1"
 description = "A lil' TOML parser"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "tomli-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:678e4fa69e4575eb77d103de3df8a895e1591b48e740211bd1067378c69e8249"},
     {file = "tomli-2.2.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:023aa114dd824ade0100497eb2318602af309e5a55595f76b626d6d9f3b7b0a6"},
@@ -3626,9 +3712,10 @@ files = [
 name = "toposort"
 version = "1.10"
 description = "Implements a topological sort algorithm."
-optional = false
+optional = true
 python-versions = "*"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "toposort-1.10-py3-none-any.whl", hash = "sha256:cbdbc0d0bee4d2695ab2ceec97fe0679e9c10eab4b2a87a9372b929e70563a87"},
     {file = "toposort-1.10.tar.gz", hash = "sha256:bfbb479c53d0a696ea7402601f4e693c97b0367837c8898bc6471adfca37a6bd"},
@@ -3638,9 +3725,10 @@ files = [
 name = "tqdm"
 version = "4.67.1"
 description = "Fast, Extensible Progress Meter"
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "tqdm-4.67.1-py3-none-any.whl", hash = "sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2"},
     {file = "tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2"},
@@ -3660,9 +3748,10 @@ telegram = ["requests"]
 name = "typer"
 version = "0.15.2"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
-optional = false
+optional = true
 python-versions = ">=3.7"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"api\""
 files = [
     {file = "typer-0.15.2-py3-none-any.whl", hash = "sha256:46a499c6107d645a9c13f7ee46c5d5096cae6f5fc57dd11eccbbb9ae3e44ddfc"},
     {file = "typer-0.15.2.tar.gz", hash = "sha256:ab2fab47533a813c49fe1f16b1a370fd5819099c00b119e0633df65f22144ba5"},
@@ -3705,10 +3794,10 @@ typing-extensions = ">=4.12.0"
 name = "tzdata"
 version = "2025.2"
 description = "Provider of IANA time zone data"
-optional = false
+optional = true
 python-versions = ">=2"
 groups = ["main"]
-markers = "platform_system == \"Windows\""
+markers = "(extra == \"dbt\" or extra == \"dagster\") and platform_system == \"Windows\""
 files = [
     {file = "tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"},
     {file = "tzdata-2025.2.tar.gz", hash = "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"},
@@ -3737,9 +3826,10 @@ devenv = ["check-manifest", "pytest (>=4.3)", "pytest-cov", "pytest-mock (>=3.3)
 name = "universal-pathlib"
 version = "0.2.6"
 description = "pathlib api extended to use fsspec backends"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "universal_pathlib-0.2.6-py3-none-any.whl", hash = "sha256:700dec2b58ef34b87998513de6d2ae153b22f083197dfafb8544744edabd1b18"},
     {file = "universal_pathlib-0.2.6.tar.gz", hash = "sha256:50817aaeaa9f4163cb1e76f5bdf84207fa05ce728b23fd779479b3462e5430ac"},
@@ -3774,9 +3864,10 @@ zstd = ["zstandard (>=0.18.0)"]
 name = "uvicorn"
 version = "0.34.0"
 description = "The lightning-fast ASGI server."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "uvicorn-0.34.0-py3-none-any.whl", hash = "sha256:023dc038422502fa28a09c7a30bf2b6991512da7dcdb8fd35fe57cfc154126f4"},
     {file = "uvicorn-0.34.0.tar.gz", hash = "sha256:404051050cd7e905de2c9a7e61790943440b3416f49cb409f965d9dcd0fa73e9"},
@@ -3800,10 +3891,10 @@ standard = ["colorama (>=0.4)", "httptools (>=0.6.3)", "python-dotenv (>=0.13)",
 name = "uvloop"
 version = "0.21.0"
 description = "Fast implementation of asyncio event loop on top of libuv"
-optional = false
+optional = true
 python-versions = ">=3.8.0"
 groups = ["main"]
-markers = "(sys_platform != \"win32\" and sys_platform != \"cygwin\") and platform_python_implementation != \"PyPy\""
+markers = "extra == \"dagster\" and (sys_platform != \"win32\" and sys_platform != \"cygwin\") and platform_python_implementation != \"PyPy\" or extra == \"api\" and (sys_platform != \"win32\" and sys_platform != \"cygwin\") and platform_python_implementation != \"PyPy\""
 files = [
     {file = "uvloop-0.21.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:ec7e6b09a6fdded42403182ab6b832b71f4edaf7f37a9a0e371a01db5f0cb45f"},
     {file = "uvloop-0.21.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:196274f2adb9689a289ad7d65700d37df0c0930fd8e4e743fa4834e850d7719d"},
@@ -3853,9 +3944,10 @@ test = ["aiohttp (>=3.10.5)", "flake8 (>=5.0,<6.0)", "mypy (>=0.800)", "psutil",
 name = "watchdog"
 version = "5.0.3"
 description = "Filesystem events monitoring"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\" or extra == \"dagster\""
 files = [
     {file = "watchdog-5.0.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:85527b882f3facda0579bce9d743ff7f10c3e1e0db0a0d0e28170a7d0e5ce2ea"},
     {file = "watchdog-5.0.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:53adf73dcdc0ef04f7735066b4a57a4cd3e49ef135daae41d77395f0b5b692cb"},
@@ -3896,9 +3988,10 @@ watchmedo = ["PyYAML (>=3.10)"]
 name = "watchfiles"
 version = "1.0.5"
 description = "Simple, modern and high performance file watching and code reload in python."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "watchfiles-1.0.5-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:5c40fe7dd9e5f81e0847b1ea64e1f5dd79dd61afbedb57759df06767ac719b40"},
     {file = "watchfiles-1.0.5-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:8c0db396e6003d99bb2d7232c957b5f0b5634bbd1b24e381a5afcc880f7373fb"},
@@ -3980,9 +4073,10 @@ anyio = ">=3.0.0"
 name = "websockets"
 version = "15.0.1"
 description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\" or extra == \"api\""
 files = [
     {file = "websockets-15.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d63efaa0cd96cf0c5fe4d581521d9fa87744540d4bc999ae6e08595a1014b45b"},
     {file = "websockets-15.0.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:ac60e3b188ec7574cb761b08d50fcedf9d77f1530352db4eef1707fe9dee7205"},
@@ -4059,9 +4153,10 @@ files = [
 name = "yarl"
 version = "1.19.0"
 description = "Yet another URL library"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dagster\""
 files = [
     {file = "yarl-1.19.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:0bae32f8ebd35c04d6528cedb4a26b8bf25339d3616b04613b97347f919b76d3"},
     {file = "yarl-1.19.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:8015a076daf77823e7ebdcba474156587391dab4e70c732822960368c01251e6"},
@@ -4161,9 +4256,10 @@ propcache = ">=0.2.1"
 name = "zipp"
 version = "3.21.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
+markers = "extra == \"dbt\""
 files = [
     {file = "zipp-3.21.0-py3-none-any.whl", hash = "sha256:ac1bbe05fd2991f160ebce24ffbac5f6d11d83dc90891255885223d42b3cd931"},
     {file = "zipp-3.21.0.tar.gz", hash = "sha256:2c9958f6430a2040341a52eb608ed6dd93ef4392e02ffe219417c1b28b5dd1f4"},
@@ -4292,9 +4388,11 @@ cffi = {version = ">=1.11", markers = "platform_python_implementation == \"PyPy\
 cffi = ["cffi (>=1.11)"]
 
 [extras]
-dbt = ["dbt-clickhouse", "dbt-core"]
+api = ["fastapi", "prometheus-fastapi-instrumentator", "uvicorn"]
+dagster = ["dagster", "dagster-postgres", "dagster-webserver"]
+dbt = ["dagster-dbt", "dbt-clickhouse", "dbt-core"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.13"
-content-hash = "023fe6bdc611f03ee693d86a7cff402d24583f29c2ca2ba5c57a0c13b191a4cb"
+content-hash = "b9d22e7aa3850bab6344c8aaaebb0daf013d28ee59a5687f62402fa0ef0b13eb"
