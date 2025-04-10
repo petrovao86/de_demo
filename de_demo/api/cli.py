@@ -1,6 +1,3 @@
-import uvicorn
-from prometheus_fastapi_instrumentator import Instrumentator
-
 from .main import app
 from .settings import settings
 
@@ -25,6 +22,11 @@ class ApiCli:
             access_log (bool): Включить/выключить логирование обращений к APIs.
             workers (PositiveInt): Колличество процессов.
         """
+        try:
+            import uvicorn
+            from prometheus_fastapi_instrumentator import Instrumentator
+        except ImportError:
+            raise ValueError("api extras not installed, try install de-demo[api]")
 
         if enable_metrics:
             Instrumentator().instrument(

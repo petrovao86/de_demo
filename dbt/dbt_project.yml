@@ -12,12 +12,11 @@ profile: 'de_demo'
 # The `model-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
 model-paths:
-    - de_demo/apps/events/dbt/models
-    - de_demo/apps/users/dbt/models
+    - models
 
 clean-targets:         # directories to be removed by `dbt clean`
-  - "dbt/target"
-  - "dbt/logs"
+  - "target"
+  - "logs"
   - "dbt_packages"
 
 

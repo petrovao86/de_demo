@@ -2,4 +2,8 @@
 /.pytest_cache/
 /.poetry/
 .idea
-/dbt/
+/dbt/logs
+/dbt/target
+/dbt/.user.yml
+/logs/
+/target/

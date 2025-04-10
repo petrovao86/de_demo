@@ -2,7 +2,7 @@ from infi.clickhouse_orm import migrations
 
 operations = [
     migrations.RunSQL("""
-        INSERT INTO default.events (dt, name, user_id, url, obj, obj_id, product_id, amount, exp)
+        CREATE VIEW events_file AS
         SELECT
             dt,
             name,

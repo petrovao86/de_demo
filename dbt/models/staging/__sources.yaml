@@ -3,4 +3,4 @@ version: 2
 sources:
 - name: default
   tables:
-  - name: events
+  - name: events_file

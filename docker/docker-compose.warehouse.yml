@@ -20,10 +20,11 @@ services:
       retries: 3
 
   migrator:
-    image: de-demo:latest
+    image: de-demo-app:latest
     build:
       context: ..
       dockerfile: ./docker/de-demo.dockerfile
+      target: app
     depends_on:
       ch:
         condition: service_healthy

@@ -1,0 +1,20 @@
+de_demo:
+  target: dev
+  outputs:
+    prod:
+      type: clickhouse
+      schema: default
+      host: "{{ env_var('CLICKHOUSE_HOST') }}"
+      port: "{{ env_var('CLICKHOUSE_PORT') | int }}"
+      user: "{{ env_var('CLICKHOUSE_USER') }}"
+      password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"
+      secure: False
+
+    dev:
+      type: clickhouse
+      schema: default
+      host: "127.0.0.1"
+      port: 18123
+      user: "user"
+      password: "pass"
+      secure: False
