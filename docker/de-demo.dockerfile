@@ -19,7 +19,6 @@ FROM builder AS cache
 COPY ./poetry.lock* ./pyproject.toml /app/
 RUN poetry self add poetry-plugin-export && \
     poetry export --all-extras --without-hashes --output=requirements.txt && \
-    poetry export --extras=dbt --without-hashes --output=dbt_requirements.txt && \
     pip download  -r requirements.txt -d /app/dist
 
 # Сборка пакета
@@ -29,16 +28,7 @@ COPY --from=cache /app /app
 COPY ./de_demo /app/de_demo
 RUN poetry build
 
-FROM builder AS dbt_build
-
-ENV PATH="/root/.local/bin:${PATH}"
-
-COPY --from=cache /app /app
-COPY dbt /app/dbt
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist -r /app/dbt_requirements.txt && \
-    cd /app/dbt && \
-    dbt parse --target dev --profiles-dir /app/dbt
-# Установка пакета
+# Базовый слой пакета
 FROM python:3.12.9-slim-bookworm AS base
 
 RUN adduser --system --home /app --uid 1000 --group app
@@ -49,18 +39,21 @@ ENV PATH="/app/.local/bin:${PATH}"
 
 COPY --from=build --chown=app:app /app/dist /app/dist
 
+# Консольное приложение без служб
 FROM base AS app
 RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo
 ENTRYPOINT  ["de-demo"]
 
+# Только API
 FROM base AS api
 RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[api]
 ENTRYPOINT  ["de-demo", "run", "api"]
 
+# Dagster с dbt
 FROM base AS dagster
 
-COPY dagster.yaml /app/
-COPY dbt /app/dbt
-COPY --from=dbt_build --chown=app:app /app/dbt/target/manifest.json /app/dbt/target/manifest.json
+COPY --chown=app:app dagster.yaml /app/
+COPY --chown=app:app dbt /app/dbt
 
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[dagster,dbt]
+RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[dagster,dbt] && \
+    dbt parse --target dev --profiles-dir /app/dbt --project-dir /app/dbt --log-level-file none --no-send-anonymous-usage-stats

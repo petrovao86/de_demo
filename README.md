@@ -35,7 +35,7 @@ ____
 
 ### Пользовательская активность
 Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи [dbt](#dbt).
-В [intermediate слой](dbt/models/intermediate/int_site_events_to_users_activity_by_day.sql) 
+В [intermediate слой](dbt/models/intermediate/int_site_events_to_users_count_by_day.sql) 
 при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
 комбинатора инкрементально пишутся агрегаты по дням, 
 витрина представлена [вьюхой](dbt/models/marts/users_activity.sql) 
@@ -61,9 +61,9 @@ ____
 
 ## BI
 В рамках проекта развёрнут BI на базе [metabase](https://www.metabase.com/).
-Логин `test@test.test`, пароль `1!!test!!1`.
-
-Адрес http://127.0.0.1:13001/
+> Логин `test@test.test`, пароль `1!!test!!1`.
+>
+> Адрес http://127.0.0.1:13001/
 
 ## dbt
 Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt/dbt_project.yml).
@@ -85,6 +85,6 @@ ____
 Код endpoint'а событий сайта находится [тут](de_demo/apps/events/api).
 
 ## Мониторинг
-Логин `admin`, пароль `admin`.
-
-Адрес http://127.0.0.1:13000/d/q9Or1W0Nz/dashboard?orgId=1&refresh=5s
+> Логин `admin`, пароль `admin`.
+> 
+> Адрес http://127.0.0.1:13000/d/q9Or1W0Nz/dashboard?orgId=1&refresh=5s
