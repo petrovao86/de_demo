@@ -1,9 +1,6 @@
 from dagster import Definitions
 
-
-def get_defs() -> list[Definitions]:
-    from .dbt import defs as dbt_defs
-    return [dbt_defs]
+from de_demo.dagster import dbt
 
 
-defs = Definitions.merge(*get_defs())
+defs = Definitions.merge(dbt.defs)

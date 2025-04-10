@@ -6,9 +6,10 @@ tests
 README.md
 data
 dbt
-dbt_project.yml
 dagster.yaml
 de_demo
 docs
+logs
+target
 docker/*
 !docker/metabase.dockerfile

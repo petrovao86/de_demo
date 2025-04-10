@@ -4,6 +4,3 @@ sources:
 - name: default
   tables:
   - name: events_file
-    meta:
-      dagster:
-        asset_key: ["events_file"]

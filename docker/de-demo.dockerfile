@@ -18,7 +18,8 @@ RUN apt update && \
 FROM builder AS cache
 COPY ./poetry.lock* ./pyproject.toml /app/
 RUN poetry self add poetry-plugin-export && \
-    poetry export --without-hashes --output=requirements.txt && \
+    poetry export --all-extras --without-hashes --output=requirements.txt && \
+    poetry export --extras=dbt --without-hashes --output=dbt_requirements.txt && \
     pip download  -r requirements.txt -d /app/dist
 
 # Сборка пакета
@@ -34,9 +35,7 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 COPY --from=cache /app /app
 COPY dbt /app/dbt
-RUN poetry self add poetry-plugin-export && \
-    poetry export --without-hashes --extras=dbt --output=requirements.txt && \
-    pip install --user --no-cache-dir --no-index --find-links /app/dist -r requirements.txt && \
+RUN pip install --user --no-cache-dir --no-index --find-links /app/dist -r /app/dbt_requirements.txt && \
     cd /app/dbt && \
     dbt parse --target parse --profiles-dir /app/dbt
 # Установка пакета
