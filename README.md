@@ -11,6 +11,7 @@ ____
 - [Инициализация проекта](#инициализация-проекта)
 - [BI](#bi)
 - [dbt](#dbt)
+- [dagster](#dagster)
 - [API](#api)
 - [Мониторинг](#мониторинг)
 
@@ -67,6 +68,14 @@ ____
 
 ## dbt
 Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt/dbt_project.yml).
+
+## dagster
+> Адрес http://127.0.0.1:13000
+
+Отвечает за обновление dbt моделей:
+![dagster dbt assets](docs/images/de_demo_dagster_assets.svg)
+Файл настроек [dagster.yaml](dagster.yaml). 
+Регистрация компонентов в [de_demo/dagster](de_demo/dagster).
 
 ## API
 При запуске в docker, стартует автоматом. 
