@@ -35,10 +35,9 @@ ____
 миграцией [0001_create_events.py](de_demo/migrations/clickhouse/0001_create_events.py).
 
 ### Пользовательская активность
-Расчёт [метрик пользовательской активности](de_demo/apps/users/dbt/models) производится при помощи [dbt](#dbt).
+Расчёт [метрик пользовательской активности](dbt/models/marts/users_activity.sql) производится при помощи [dbt](#dbt).
 В [intermediate слой](dbt/models/intermediate/int_site_events_to_users_count_by_day.sql) 
-при помощи [-State](https://clickhouse.com/docs/sql-reference/aggregate-functions/combinators#-state) 
-комбинатора инкрементально пишутся агрегаты по дням, 
+при помощи инкрементально пишутся агрегаты по дням, 
 витрина представлена [вьюхой](dbt/models/marts/users_activity.sql) 
 агрегирующей промежуточные данные за требуемое кол-во дней оконными функциями.
 
