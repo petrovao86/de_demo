@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 from de_demo.apps.events.api.router import get_buffer, router
 
 
-class TestBuffer:
+class Buffer:
     def __init__(self):
         self.buff = []
 
@@ -15,7 +15,7 @@ class TestBuffer:
 
 @pytest.fixture(scope='function')
 def test_buff():
-    return TestBuffer()
+    return Buffer()
 
 
 @pytest.fixture(scope='function')

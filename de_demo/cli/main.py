@@ -4,6 +4,7 @@ from pathlib import Path
 import fire
 
 from de_demo.api.cli import ApiCli
+from de_demo.apps.events.cli import GeneratorCli as EventsGeneratorCli
 from de_demo.dbt.cli import DbtCli
 from de_demo.migrations.cli import MigrateCli
 from de_demo.settings.main import Settings
@@ -19,6 +20,14 @@ class RunCli:
     @property
     def dbt(self):
         return DbtCli()
+
+
+class GenerateCli:
+    """Запуск генераторов."""
+
+    @property
+    def events(self):
+        return EventsGeneratorCli()
 
 
 class Cli:
@@ -59,6 +68,10 @@ class Cli:
     @property
     def migrate(self):
         return MigrateCli()
+
+    @property
+    def generate(self):
+        return GenerateCli()
 
 
 def run():
