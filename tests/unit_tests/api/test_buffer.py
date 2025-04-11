@@ -1,4 +1,5 @@
 import pytest
+import pytest_asyncio
 
 from de_demo.api.buffer import AsyncBuffer
 
@@ -21,13 +22,13 @@ class Buffer(AsyncBuffer[int]):
         self.buff += batch
 
 
-@pytest.fixture()
-def buffer():
+@pytest_asyncio.fixture()
+async def buffer():
     b = Buffer()
     try:
         yield b
     finally:
-        b.stop()
+        await b.stop()
 
 
 @pytest.mark.asyncio()
