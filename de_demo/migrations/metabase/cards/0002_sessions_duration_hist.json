@@ -1,0 +1,24 @@
+{
+    "dataset_query": {
+        "database": 2,
+        "type": "native",
+        "native": {
+            "template-tags": {},
+            "query": "SELECT\n\tfloor(duration/(60*60)) as `Длительность, ч`,\n\tcount() as `Визитов`\nfrom sessions\ngroup by `Длительность, ч`\norder by `Длительность, ч`\n"
+        }
+    },
+    "visualization_settings": {
+        "graph.dimensions": [
+            "Длительность, ч"
+        ],
+        "graph.series_order_dimension": null,
+        "graph.series_order": null,
+        "graph.x_axis.scale": "linear",
+        "graph.metrics": [
+            "Визитов"
+        ]
+    },
+    "type": "question",
+    "display": "bar",
+    "name": "Длительность визитов"
+}
