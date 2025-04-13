@@ -4,6 +4,7 @@ from pathlib import Path
 import fire
 
 from de_demo.api.cli import ApiCli
+from de_demo.api_clients.metabase.cli import MetabaseCli
 from de_demo.apps.events.cli import GeneratorCli as EventsGeneratorCli
 from de_demo.dbt.cli import DbtCli
 from de_demo.migrations.cli import MigrateCli
@@ -72,6 +73,10 @@ class Cli:
     @property
     def generate(self):
         return GenerateCli()
+
+    @property
+    def metabase(self):
+        return MetabaseCli
 
 
 def run():

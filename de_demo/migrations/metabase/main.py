@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from de_demo.api_clients.metabase.main import MetabaseAPIClient
 
 
@@ -7,10 +9,10 @@ def migrate(addr: str,
             engine: str, name: str,
             db_host: str, db_port: int, db_user: str, db_passwd: str, db_name: str
             ):
-    cli = MetabaseAPIClient(addr)
-    prop = cli.get_session_properties()
+    api = MetabaseAPIClient(addr)
+    prop = api.get_session_properties()
     if not prop.has_user_setup:
-        cli.setup_user(
+        api.setup_user(
             user_name=user_name,
             email=email,
             passwd=passwd,
@@ -18,7 +20,7 @@ def migrate(addr: str,
             site_name=site_name,
             token=prop.setup_token,
         )
-        cli.add_database(
+        api.add_database(
             name=name,
             engine=engine,
             db_host=db_host,
@@ -28,4 +30,10 @@ def migrate(addr: str,
             db_name=db_name,
 
         )
+        add_cards(api)
 
+
+def add_cards(api: MetabaseAPIClient):
+    cards = sorted((Path(__file__).parent / "cards").glob("*.json"))
+    for card in cards:
+        api.create_raw_card(card.read_bytes())

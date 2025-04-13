@@ -1,8 +1,8 @@
 from httpx import Client, URL
 
 from .models import (
-    AddDatabaseRequest, DatabaseSettings, SessionPropertiesResponse, SetupRequest, SitePreferences,
-    UserInfo, User
+    AddDatabaseRequest, CardResponse, DatabaseSettings, SessionPropertiesResponse, SessionRequest,
+    SetupRequest, SitePreferences, UserInfo, User
 )
 
 
@@ -11,9 +11,11 @@ class MetabaseApiException(Exception):
 
 
 class MetabaseAPIClient:
-    def __init__(self, addr: str):
+    def __init__(self, addr: str, user: str | None = None, passwd: str | None = None):
         self._client = Client()
         self._addr = addr
+        if user and passwd:
+            self.post_session(username=user, password=passwd)
 
     def _get(self, url, params=None):
         response = self._client.get(url, params=params)
@@ -84,4 +86,27 @@ class MetabaseAPIClient:
             url=URL(self._addr).join("/api/database"),
             headers={"Content-Type": "application/json"},
             content=req.model_dump_json()
+        )
+
+    def post_session(self, username: str, password: str):
+        req = SessionRequest(
+            username=username,
+            password=password
+        )
+        return self._post(
+            url=URL(self._addr).join("/api/session/"),
+            headers={"Content-Type": "application/json"},
+            content=req.model_dump_json()
+        )
+
+    def get_card(self, card_id: int) -> CardResponse:
+        return CardResponse.model_validate(self._get(
+            url=URL(self._addr).join("/api/card/").join(str(card_id)),
+        ))
+
+    def create_raw_card(self, json: bytes):
+        return self._post(
+            url=URL(self._addr).join("/api/card/"),
+            headers={"Content-Type": "application/json"},
+            content=json
         )

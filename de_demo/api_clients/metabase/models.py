@@ -52,3 +52,16 @@ class AddDatabaseRequest(BaseModel):
     auto_run_queries: bool = True
     details: DatabaseSettings
     schedules: dict = {}
+
+
+class SessionRequest(BaseModel):
+    username: str
+    password: str
+
+
+class CardResponse(BaseModel):
+    dataset_query: dict
+    visualization_settings: dict
+    type: str
+    display: str
+    name: str
