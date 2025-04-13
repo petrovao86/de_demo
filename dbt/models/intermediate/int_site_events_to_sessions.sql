@@ -13,7 +13,7 @@
 WITH last_events AS (
     select
         user_id,
-        max(prev_dt) as last_prev_dt
+        max(dt) as last_prev_dt
     from {{ this }}
     where dt<toStartOfMonth((select max(dt) from {{ this }})) - toIntervalMonth(1)
     and dt >= toStartOfMonth((select max(dt) from {{ this }})) - toIntervalMonth(1) - toIntervalSecond({{ session_timeout }})
