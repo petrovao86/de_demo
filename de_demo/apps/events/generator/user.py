@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from math import exp, gamma, pow
-from random import choices, expovariate
+from random import choices
 
 from ..api.models import EventRequest
 
