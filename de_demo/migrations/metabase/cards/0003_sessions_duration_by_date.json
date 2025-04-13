@@ -16,7 +16,14 @@
         "graph.x_axis.scale": "timeseries",
         "series_settings": {
             "Длительность, ч": {
-                "line.interpolate": "cardinal"
+                "color": "#88BF4D",
+                "line.interpolate": "step-after"
+            }
+        },
+        "column_settings": {
+            "[\"name\",\"Дата\"]": {
+                "date_style": "YYYY/M/D",
+                "date_separator": "-"
             }
         },
         "graph.metrics": [

@@ -69,11 +69,18 @@ ____
 >
 > Адрес http://127.0.0.1:13001/collection/root
 
-Карточки:
-- Пользовательская активность - http://127.0.0.1:13001/question/38-users-activity
-
+### Карточки
 > Карточки заработают после первого запуска dbt dagster'ом, т.к. используют витрины ещё 
 > не материализованные в момент первого запуска.
+#### Пользовательская активность
+http://127.0.0.1:13001/question/38-users-activity
+![Пользовательская активность](docs/images/de_demo_metabase_users_activity.png)
+#### Распредение длительности визитов
+http://127.0.0.1:13001/question/39-dlitel-nost-vizitov
+![Распредение длительности визитов](docs/images/de_demo_metabase_sessions_duration_hist.png)
+#### Динамика изменения длительности визитов
+http://127.0.0.1:13001/question/40-dlitel-nost-vizitov-dinamika
+![Динамика изменения длительности визитов](docs/images/de_demo_metabase_sessions_duration_by_day.png)
 
 ## dbt
 Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt/dbt_project.yml).
