@@ -63,7 +63,10 @@ ____
 В рамках проекта развёрнут BI на базе [metabase](https://www.metabase.com/).
 > Логин `test@test.test`, пароль `1!!test!!1`.
 >
-> Адрес http://127.0.0.1:13001/
+> Адрес http://127.0.0.1:13001/collection/root
+
+Карточки:
+- Пользовательская активность - http://127.0.0.1:13001/question/38-users-activity
 
 ## dbt
 Запуск dbt `de-demo run dbt`.  Файл настроек проекта [dbt_project.yml](dbt/dbt_project.yml).
