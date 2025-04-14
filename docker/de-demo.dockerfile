@@ -37,16 +37,26 @@ USER app
 WORKDIR /app/
 ENV PATH="/app/.local/bin:${PATH}"
 
-COPY --from=build --chown=app:app /app/dist /app/dist
-
 # Консольное приложение без служб
 FROM base AS app
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo
+
+RUN --mount=type=bind,from=build,source=/app/dist,target=/app/dist pip install \
+    --user  \
+    --no-cache-dir  \
+    --no-index  \
+    --find-links /app/dist  \
+    de_demo
 ENTRYPOINT  ["de-demo"]
 
 # Только API
 FROM base AS api
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[api]
+
+RUN --mount=type=bind,from=build,source=/app/dist,target=/app/dist pip install \
+    --user \
+    --no-cache-dir \
+    --no-index \
+    --find-links /app/dist \
+    de_demo[api]
 ENTRYPOINT  ["de-demo", "run", "api"]
 
 # Dagster с dbt
@@ -55,5 +65,15 @@ FROM base AS dagster
 COPY --chown=app:app dagster.yaml /app/
 COPY --chown=app:app dbt /app/dbt
 
-RUN pip install --user --no-cache-dir --no-index --find-links /app/dist de_demo[dagster,dbt] && \
-    dbt parse --target dev --profiles-dir /app/dbt --project-dir /app/dbt --log-level-file none --no-send-anonymous-usage-stats
+RUN --mount=type=bind,from=build,source=/app/dist,target=/app/dist pip install \
+    --user \
+    --no-cache-dir \
+    --no-index \
+    --find-links /app/dist  \
+    de_demo[dagster,dbt] && \
+    dbt parse \
+    --target dev \
+    --profiles-dir /app/dbt \
+    --project-dir /app/dbt \
+    --log-level-file none \
+    --no-send-anonymous-usage-stats
