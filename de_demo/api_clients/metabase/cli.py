@@ -4,12 +4,16 @@ from .main import MetabaseAPIClient
 
 
 class MetabaseCli:
-    def __init__(self, addr: str, user: str | None = None, passwd: str | None = None):
-        self._client = MetabaseAPIClient(addr=addr, user=user, passwd=passwd)
+    """Управление объектами Metabase."""
+    @staticmethod
+    def dump_card(card_id: int, addr: str, user: str | None = None, passwd: str | None = None):
+        """Вывести json-конфигурацию карточки metabase."""
+        api = MetabaseAPIClient(addr=addr, user=user, passwd=passwd)
+        print(api.get_card(card_id).model_dump_json(indent=4))
 
-    def dump_card(self, card_id: int):
-        print(self._client.get_card(card_id).model_dump_json(indent=4))
-
-    def create_card(self, path: str):
+    @staticmethod
+    def create_card(path: str, addr: str, user: str | None = None, passwd: str | None = None):
+        """Создать карточку в metabase из json-файла конфигурации."""
         card_path = Path(path)
-        self._client.create_raw_card(card_path.read_bytes())
+        api = MetabaseAPIClient(addr=addr, user=user, passwd=passwd)
+        api.create_raw_card(card_path.read_bytes())

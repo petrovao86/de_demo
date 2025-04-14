@@ -59,7 +59,7 @@ ____
 - Установить poetry([инструкция](https://python-poetry.org/docs/#installing-with-the-official-installer))
   - TLDR: `curl -sSL https://install.python-poetry.org | python3 -`
 - В корне проекта `poetry env use python3.12` и `poetry install --no-root --all-extras`
-- Далее см. [утилиту командной строки](#утилита-командной-строки), [тесты](#тесты)
+- Далее см. [утилиту командной строки](de_demo/cli), [тесты](tests)
 
 
 
