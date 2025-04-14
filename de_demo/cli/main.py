@@ -76,7 +76,7 @@ class Cli:
 
     @property
     def metabase(self):
-        return MetabaseCli
+        return MetabaseCli()
 
 
 def run():
