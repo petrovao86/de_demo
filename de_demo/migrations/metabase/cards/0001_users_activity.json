@@ -1,0 +1,50 @@
+{
+    "dataset_query": {
+        "database": 2,
+        "type": "native",
+        "native": {
+            "template-tags": {},
+            "query": "SELECT\n  date,\n  dau,\n  wau,\n  mau,\n  dau / mau AS Stikness\nFROM users_activity\n"
+        }
+    },
+    "visualization_settings": {
+        "series_settings": {
+            "dau": {
+                "axis": "right"
+            },
+            "wau": {
+                "axis": "right"
+            },
+            "mau": {
+                "axis": "right"
+            },
+            "Stikness": {
+                "axis": "left",
+                "line.interpolate": "cardinal",
+                "line.style": "dashed"
+            }
+        },
+        "graph.x_axis.scale": "timeseries",
+        "graph.dimensions": [
+            "date"
+        ],
+        "column_settings": {
+            "[\"name\",\"date\"]": {
+                "date_style": "YYYY/M/D",
+                "date_separator": "-"
+            },
+            "[\"name\",\"Stikness\"]": {
+                "number_style": "percent"
+            }
+        },
+        "graph.metrics": [
+            "dau",
+            "wau",
+            "mau",
+            "Stikness"
+        ]
+    },
+    "type": "question",
+    "display": "line",
+    "name": "Users Activity"
+}

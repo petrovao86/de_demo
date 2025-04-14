@@ -1,0 +1,36 @@
+{
+    "dataset_query": {
+        "database": 2,
+        "type": "native",
+        "native": {
+            "template-tags": {},
+            "query": "SELECT\n\ttoDate(started_at) as `Дата`,\n\tfloor(avg(duration)/(60*60)) as `Длительность, ч`\nfrom sessions\ngroup by `Дата`\norder by `Дата`\n"
+        }
+    },
+    "visualization_settings": {
+        "graph.dimensions": [
+            "Дата"
+        ],
+        "graph.series_order_dimension": null,
+        "graph.series_order": null,
+        "graph.x_axis.scale": "timeseries",
+        "series_settings": {
+            "Длительность, ч": {
+                "color": "#88BF4D",
+                "line.interpolate": "step-after"
+            }
+        },
+        "column_settings": {
+            "[\"name\",\"Дата\"]": {
+                "date_style": "YYYY/M/D",
+                "date_separator": "-"
+            }
+        },
+        "graph.metrics": [
+            "Длительность, ч"
+        ]
+    },
+    "type": "question",
+    "display": "line",
+    "name": "Длительность визитов, динамика"
+}
