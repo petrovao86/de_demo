@@ -2,6 +2,7 @@ services:
   ch:
     image: clickhouse/clickhouse-server:24.12-alpine
     volumes:
+      - ./clickhouse/config.xml:/etc/clickhouse-server/config.xml
       - ch:/var/lib/clickhouse
       - ../data/events.xz:/var/lib/clickhouse/user_files/events.xz
     ports:

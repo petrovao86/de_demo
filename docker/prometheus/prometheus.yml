@@ -8,3 +8,9 @@ scrape_configs:
           - 'api:8000'
         labels:
           service: de_demo
+  - job_name: clickhouse
+    static_configs:
+      - targets:
+          - 'ch:9363'
+        labels:
+          service: clickhouse

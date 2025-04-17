@@ -7,7 +7,6 @@ class ApiSettings(BaseSettings, validate_assignment=True):
     port: PositiveInt = 18000
     log_level: str = Field(default="info")
     access_log: bool = False
-    workers: PositiveInt = 1
     enable_metrics: bool = True
 
     model_config = SettingsConfigDict(

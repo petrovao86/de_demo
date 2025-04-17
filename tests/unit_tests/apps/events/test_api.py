@@ -2,7 +2,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from de_demo.apps.events.api.router import get_buffer, router
+from de_demo.apps.events.api.routes import get_buffer, router
 
 
 class Buffer:
