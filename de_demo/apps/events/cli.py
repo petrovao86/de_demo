@@ -2,13 +2,18 @@ from datetime import datetime, timezone
 
 from pydantic import SecretStr
 
-from .generator.main import Generator
+from .generator.main import Generator, generate_load
 from .settings import settings
 
 
 class GeneratorCli:
-    def __call__(
-            self,
+    @staticmethod
+    def load(addr: str, rps: float = 30):
+        """Генератор нагрузки для de_demo.apps.events"""
+        generate_load(addr=addr, rps=rps)
+
+    @staticmethod
+    def data(
             start_dt: str,
             end_dt: str,
             dau: int = 30,
@@ -20,7 +25,7 @@ class GeneratorCli:
             db_user: str = settings.db.user,
             db_passwd: str | SecretStr = settings.db.passwd,
     ):
-        """Генератор для de_demo.apps.events
+        """Генератор демонстрационных данных для de_demo.apps.events
 
         Вставляет демонстрационные данные в базу от from_dt до to_dt, если указано,
         или по сейчас. Если to_dt не указано, после генерации истории переключается в режим отправки

@@ -60,6 +60,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -69,8 +70,8 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         ),
         state=UserState.ACTIVE
     )
-    assert active_user._is_rate_limit((NOW+timedelta(seconds=1)).timestamp(), user_rps=0.5)
-    assert not active_user._is_rate_limit((NOW+timedelta(seconds=2)).timestamp(), user_rps=0.5)
+    assert active_user._is_rate_limit((NOW+timedelta(seconds=1)).timestamp())
+    assert not active_user._is_rate_limit((NOW+timedelta(seconds=2)).timestamp())
     assert active_user._is_active((NOW + timedelta(seconds=2)).timestamp())
     assert active_user.state == UserState.ACTIVE
     assert active_user.active_since == NOW.timestamp()
@@ -79,6 +80,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -88,7 +90,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         ),
         state=UserState.ACTIVE
     )
-    e = active_user.events(NOW+timedelta(seconds=10), user_rps=0.5)
+    e = active_user.events(NOW+timedelta(seconds=10))
     assert e is not None
     assert active_user.state == UserState.ACTIVE
     assert active_user.active_since == NOW.timestamp()
@@ -97,6 +99,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -107,8 +110,8 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         state=UserState.SLEEP
     )
 
-    assert inactive_user._is_rate_limit((NOW + timedelta(seconds=1)).timestamp(), user_rps=0.5)
-    assert not inactive_user._is_rate_limit((NOW + timedelta(seconds=2)).timestamp(), user_rps=0.5)
+    assert inactive_user._is_rate_limit((NOW + timedelta(seconds=1)).timestamp())
+    assert not inactive_user._is_rate_limit((NOW + timedelta(seconds=2)).timestamp())
     assert inactive_user._is_active((NOW + timedelta(seconds=2)).timestamp())
     assert inactive_user.state == UserState.SLEEP
     assert inactive_user.active_since == NOW.timestamp()
@@ -117,6 +120,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -127,7 +131,7 @@ def test_probably_active_user(probably_active_user, stay_on_site):
         state=UserState.SLEEP
     )
 
-    e = inactive_user.events(NOW + timedelta(seconds=10), user_rps=0.5)
+    e = inactive_user.events(NOW + timedelta(seconds=10))
     assert e is not None
     assert inactive_user.state == UserState.ACTIVE
     assert inactive_user.active_since == (NOW + timedelta(seconds=10)).timestamp()
@@ -138,6 +142,7 @@ def test_probably_active_leave_site(probably_active_user, leave_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -148,7 +153,7 @@ def test_probably_active_leave_site(probably_active_user, leave_site):
         state=UserState.ACTIVE
     )
 
-    e = active_user.events(NOW+timedelta(seconds=10), user_rps=0.5)
+    e = active_user.events(NOW+timedelta(seconds=10))
     assert e is None
     assert active_user.state == UserState.SLEEP
     assert active_user.active_since == NOW.timestamp()
@@ -157,6 +162,7 @@ def test_probably_active_leave_site(probably_active_user, leave_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -167,7 +173,7 @@ def test_probably_active_leave_site(probably_active_user, leave_site):
         state=UserState.SLEEP
     )
 
-    e = inactive_user.events(NOW + timedelta(seconds=10), user_rps=0.5)
+    e = inactive_user.events(NOW + timedelta(seconds=10))
     assert e is None
     assert inactive_user.state == UserState.SLEEP
     assert inactive_user.active_since == NOW.timestamp()
@@ -178,6 +184,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -187,8 +194,8 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         ),
         state=UserState.ACTIVE
     )
-    assert active_user._is_rate_limit((NOW+timedelta(seconds=1)).timestamp(), user_rps=0.5)
-    assert not active_user._is_rate_limit((NOW+timedelta(seconds=2)).timestamp(), user_rps=0.5)
+    assert active_user._is_rate_limit((NOW+timedelta(seconds=1)).timestamp())
+    assert not active_user._is_rate_limit((NOW+timedelta(seconds=2)).timestamp())
     assert active_user._is_active((NOW + timedelta(seconds=2)).timestamp())
     assert active_user.state == UserState.ACTIVE
     assert active_user.active_since == NOW.timestamp()
@@ -197,6 +204,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -206,7 +214,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         ),
         state=UserState.ACTIVE
     )
-    e = active_user.events(NOW+timedelta(seconds=10), user_rps=0.5)
+    e = active_user.events(NOW+timedelta(seconds=10))
     assert e is not None
     assert active_user.state == UserState.ACTIVE
     assert active_user.active_since == NOW.timestamp()
@@ -215,6 +223,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -225,8 +234,8 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         state=UserState.SLEEP
     )
 
-    assert inactive_user._is_rate_limit((NOW + timedelta(seconds=1)).timestamp(), user_rps=0.5)
-    assert not inactive_user._is_rate_limit((NOW + timedelta(seconds=2)).timestamp(), user_rps=0.5)
+    assert inactive_user._is_rate_limit((NOW + timedelta(seconds=1)).timestamp())
+    assert not inactive_user._is_rate_limit((NOW + timedelta(seconds=2)).timestamp())
     assert not inactive_user._is_active((NOW + timedelta(seconds=2)).timestamp())
     assert inactive_user.state == UserState.SLEEP
     assert inactive_user.active_since == NOW.timestamp()
@@ -235,6 +244,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         user_id=1,
         created_at=NOW,
         visits_per_day=2,
+        user_rps=0.5,
         last_event=view_page(
             dt=NOW,
             url=Products.MAIN.value.url,
@@ -245,7 +255,7 @@ def test_probably_inactive_user(probably_inactive_user, stay_on_site):
         state=UserState.SLEEP
     )
 
-    e = inactive_user.events(NOW + timedelta(seconds=10), user_rps=0.5)
+    e = inactive_user.events(NOW + timedelta(seconds=10))
     assert e is None
     assert inactive_user.state == UserState.SLEEP
     assert inactive_user.active_since == NOW.timestamp()

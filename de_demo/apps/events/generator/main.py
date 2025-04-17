@@ -1,12 +1,15 @@
 from datetime import datetime, timedelta, timezone
 from math import exp, gamma, pi, sin
 from random import choices
+from time import monotonic, sleep
 
+from httpx import Client
 from infi.clickhouse_orm.database import Database
 
 from ..api.models import EventRequest
 from ..warehouse.models import Events
 from .constants import UserState
+from .requests import view_page
 from .user import User
 
 
@@ -109,3 +112,20 @@ class Generator:
                 events = []
 
         db.insert((Events(**event.model_dump(mode="json")) for event in events))
+
+
+def generate_load(addr: str, rps: float):
+    event = view_page(
+        dt=datetime.now(timezone.utc) - timedelta(days=365),url="http://load.generator", user_id=0
+    ).model_dump_json()
+    header = {"Content-Type": "application/json"}
+    with Client() as client:
+        while True:
+            now = monotonic()
+            resp = client.post(addr, headers=header, content=event)
+            if resp.status_code != 200:
+                print(resp.status_code, resp.text)
+                break
+            dt = monotonic()-now
+            if dt < 1/rps:
+                sleep(1/rps-dt)
