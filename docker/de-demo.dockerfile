@@ -62,18 +62,19 @@ ENTRYPOINT  ["de-demo", "run", "api"]
 # Dagster с dbt
 FROM base AS dagster
 
-COPY --chown=app:app dagster.yaml /app/
-COPY --chown=app:app dbt /app/dbt
-
 RUN --mount=type=bind,from=build,source=/app/dist,target=/app/dist pip install \
     --user \
     --no-cache-dir \
     --no-index \
     --find-links /app/dist  \
-    de_demo[dagster,dbt] && \
-    dbt parse \
+    de_demo[dagster,dbt]
+
+COPY --chown=app:app dbt /app/dbt
+RUN dbt parse \
     --target dev \
     --profiles-dir /app/dbt \
     --project-dir /app/dbt \
     --log-level-file none \
     --no-send-anonymous-usage-stats
+
+COPY --chown=app:app dagster.yaml /app/
