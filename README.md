@@ -43,7 +43,7 @@ ____
 
 ### Сессии
 Кликстрим нарезается на сессии при помощи [dbt](#dbt). Сессия завершается по таймауту. 
-В [intermediate слой](dbt/models/intermediate/int_site_events_to_sessions.sql) инкрементально 
+В [intermediate слой](dbt/models/intermediate/int_site_events_to_user_sessions.sql) инкрементально 
 пишется часть таблицы событий с временем предыдущего события и идентификатором сессии.
 
 ## Структура проекта
