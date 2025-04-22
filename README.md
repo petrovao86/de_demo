@@ -33,6 +33,7 @@ ____
 ### События сайта
 Представлены двумя [таблицами](de_demo/apps/events/warehouse), которые развертываются 
 миграцией [0001_create_events.py](de_demo/migrations/clickhouse/0001_create_events.py).
+Демонстрационные данные сгенерированы предварительно и выгружаются из файла [events.xz](data/events.xz).
 
 ### Пользовательская активность
 Расчёт метрик пользовательской активности производится при помощи [dbt](#dbt).
@@ -114,8 +115,8 @@ http://127.0.0.1:13001/question/40-dlitel-nost-vizitov-dinamika
 > 
 > Адрес http://127.0.0.1:13000/d/q9Or1W0Nz/dashboard?orgId=1&refresh=5s
 
-Под нагрузкой видно как отрабатывает буферизация вставки в ClickHouse:
-- на стороне API - `INSERTs rate` ~0.1 или 1 инсерт в 10 сек 
+Видно как под нагрузкой отрабатывает буферизация вставки в ClickHouse:
+- на стороне API - `INSERTs rate` ~0.1 или 1 инсерт в 10 сек
 - на стороне буферной таблицы ClickHouse - `INSERTed rows rate` скачет периодически при сбросе данных в основную таблицу
 
 ![Дашборд](docs/images/de_demo_monitoring.png)
