@@ -73,14 +73,16 @@ ____
 > Адрес http://127.0.0.1:13001/collection/root
 
 ### Карточки
-> Карточки заработают после первого запуска dbt dagster'ом, т.к. используют витрины ещё 
-> не материализованные в момент первого запуска.
+> Карточки заработают после первого запуска dbt dagster'ом, job запускается в момент старта демона.
+
 #### Пользовательская активность
 http://127.0.0.1:13001/question/38-users-activity
 ![Пользовательская активность](docs/images/de_demo_metabase_users_activity.png)
+
 #### Распредение длительности визитов
 http://127.0.0.1:13001/question/39-dlitel-nost-vizitov
 ![Распредение длительности визитов](docs/images/de_demo_metabase_sessions_duration_hist.png)
+
 #### Динамика изменения длительности визитов
 http://127.0.0.1:13001/question/40-dlitel-nost-vizitov-dinamika
 ![Динамика изменения длительности визитов](docs/images/de_demo_metabase_sessions_duration_by_day.png)
