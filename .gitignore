@@ -7,3 +7,4 @@
 /dbt/.user.yml
 /logs/
 /target/
+**__pycache__
